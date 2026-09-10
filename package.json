@@ -1,0 +1,30 @@
+{
+  "name": "alex-store-theme",
+  "version": "1.0.0",
+  "description": "Custom WooCommerce WordPress theme inspired by Ubalux",
+  "main": "index.php",
+  "scripts": {
+    "build:css": "node ./node_modules/tailwindcss/lib/cli.js -i ./src/css/input.css -o ./dist/css/main.css --minify",
+    "watch:css": "node ./node_modules/tailwindcss/lib/cli.js -i ./src/css/input.css -o ./dist/css/main.css --watch",
+    "build:js": "node build-js.js",
+    "watch:js": "node build-js.js --watch",
+    "build": "npm run build:css && npm run build:js",
+    "dev": "npm run build && node -e \"console.log('Build completed')\""
+  },
+  "keywords": [
+    "wordpress",
+    "woocommerce",
+    "theme",
+    "tailwind"
+  ],
+  "author": "Tech Store Developer",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.20",
+    "esbuild": "^0.25.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}
