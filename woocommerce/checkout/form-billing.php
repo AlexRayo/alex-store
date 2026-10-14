@@ -14,10 +14,10 @@ defined('ABSPATH') || exit;
     <div class="flex items-center justify-between pb-4 border-b border-neutral-100 mb-6">
         <h3 class="text-lg font-black text-neutral-900 flex items-center gap-2.5">
             <span class="w-7 h-7 rounded-xl bg-primary text-white flex items-center justify-center text-xs font-bold shadow-sm">1</span>
-            <span><?php echo esc_html(apply_filters('woocommerce_billing_fields_heading', __('Detalles de facturación', 'tech-store'))); ?></span>
+            <span><?php echo esc_html(apply_filters('woocommerce_billing_fields_heading', __('Detalles de facturación', 'alex-store'))); ?></span>
         </h3>
         <span class="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
-            <?php esc_html_e('Datos del Comprador', 'tech-store'); ?>
+            <?php esc_html_e('Datos del Comprador', 'alex-store'); ?>
         </span>
     </div>
 
@@ -42,7 +42,7 @@ defined('ABSPATH') || exit;
         <?php if (!$checkout->is_registration_required()) : ?>
             <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox flex items-center gap-2.5 cursor-pointer select-none text-xs font-bold text-neutral-800">
                 <input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox w-4 h-4 rounded text-primary focus:ring-primary border-neutral-300" id="createaccount" <?php checked((true === $checkout->get_value('createaccount') || (true === apply_filters('woocommerce_create_account_default_checked', false))), true); ?> type="checkbox" name="createaccount" value="1" />
-                <span><?php esc_html_e('¿Crear una cuenta en Tech Store?', 'tech-store'); ?></span>
+                <span><?php esc_html_e('¿Crear una cuenta en Tech Store?', 'alex-store'); ?></span>
             </label>
         <?php endif; ?>
 

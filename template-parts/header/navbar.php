@@ -15,7 +15,7 @@ $cart_url     = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_ur
 ?>
 
 <div class="border-b border-neutral-200/80 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="site-container">
         
         <!-- =========================================================
              1. DESKTOP VIEW (lg:flex single bar)
@@ -44,7 +44,7 @@ $cart_url     = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_ur
             </div>
 
             <!-- Central Live Search Bar (Desktop) -->
-            <div class="flex-1 max-w-2xl relative alex-search-wrapper tech-search-wrapper">
+            <div class="flex-1 max-w-3xl relative alex-search-wrapper tech-search-wrapper">
                 <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="w-full relative">
                     <input type="hidden" name="post_type" value="product" />
                     <div class="relative flex items-center">
@@ -112,7 +112,7 @@ $cart_url     = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_ur
              ========================================================= -->
         <div class="lg:hidden flex flex-col py-2.5">
             
-            <!-- Mobile Row 1: [Menu ☰] [Logo MR Soluciones] [Ingresar › 👤] [Cart 🛒 (Count)] -->
+            <!-- Mobile Row 1: [Menu] [Logo MR Soluciones] [Ingresar] [Cart (Count)] -->
             <div class="flex items-center justify-between gap-3 h-12">
                 
                 <!-- Left: Mobile Menu Trigger + Brand -->

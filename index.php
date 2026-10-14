@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * The main template file
  *
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
-<main id="primary" class="site-main max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main id="primary" class="site-main site-container py-10">
     <?php if (have_posts()) : ?>
         <header class="mb-8">
             <h1 class="text-3xl font-black text-dark tracking-tight">
@@ -47,7 +47,7 @@ get_header();
 
                     <div>
                         <a href="<?php the_permalink(); ?>" class="text-xs font-bold text-primary hover:underline inline-flex items-center gap-1">
-                            <?php esc_html_e('Leer más', 'tech-store'); ?> &rarr;
+                            <?php esc_html_e('Leer más', 'alex-store'); ?> &rarr;
                         </a>
                     </div>
                 </article>
@@ -59,8 +59,8 @@ get_header();
         </div>
     <?php else : ?>
         <div class="text-center py-16 bg-white rounded-card border border-neutral-border p-8">
-            <h2 class="text-xl font-bold text-dark mb-2"><?php esc_html_e('No se encontraron publicaciones', 'tech-store'); ?></h2>
-            <p class="text-sm text-neutral-subtle"><?php esc_html_e('Parece que no hay contenido disponible en esta sección.', 'tech-store'); ?></p>
+            <h2 class="text-xl font-bold text-dark mb-2"><?php esc_html_e('No se encontraron publicaciones', 'alex-store'); ?></h2>
+            <p class="text-sm text-neutral-subtle"><?php esc_html_e('Parece que no hay contenido disponible en esta sección.', 'alex-store'); ?></p>
         </div>
     <?php endif; ?>
 </main>

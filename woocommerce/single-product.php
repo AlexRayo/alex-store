@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * The Template for displaying all single products (Primary Sale Badge Edition)
  *
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<div class="site-container py-6">
     
     <!-- Breadcrumbs -->
     <?php woocommerce_breadcrumb(); ?>
@@ -23,10 +23,10 @@ get_header();
 
         $product_id        = $product->get_id();
         $raw_title         = $product->get_name();
-        $title             = function_exists('tech_store_capitalize_text') ? tech_store_capitalize_text($raw_title) : ucwords(strtolower($raw_title));
+        $title             = function_exists('alex_store_capitalize_text') ? alex_store_capitalize_text($raw_title) : ucwords(strtolower($raw_title));
         $price_html        = $product->get_price_html();
         $is_on_sale        = $product->is_on_sale();
-        $discount_pct      = $is_on_sale ? tech_store_get_discount_percentage($product) : 0;
+        $discount_pct      = $is_on_sale ? alex_store_get_discount_percentage($product) : 0;
         $is_in_stock       = $product->is_in_stock();
         $image_id          = $product->get_image_id();
         $main_image_url    = $image_id ? wp_get_attachment_image_url($image_id, 'large') : wc_placeholder_img_src('woocommerce_single');
@@ -100,11 +100,11 @@ get_header();
                             <?php if ($is_in_stock) : ?>
                                 <span class="text-xs font-semibold text-neutral-700 bg-neutral-100 px-3 py-1 rounded-full flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                    <?php esc_html_e('En Stock - Listo para envío inmediato', 'tech-store'); ?>
+                                    <?php esc_html_e('En Stock - Listo para envío inmediato', 'alex-store'); ?>
                                 </span>
                             <?php else : ?>
                                 <span class="text-xs font-semibold text-neutral-400 bg-neutral-100 px-2.5 py-1 rounded-full">
-                                    <?php esc_html_e('Agotado', 'tech-store'); ?>
+                                    <?php esc_html_e('Agotado', 'alex-store'); ?>
                                 </span>
                             <?php endif; ?>
                         </div>
@@ -136,24 +136,24 @@ get_header();
                                 rel="noopener noreferrer"
                                 class="inline-flex items-center justify-center gap-2 w-full bg-neutral-900 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl shadow-sm text-sm transition-all"
                             >
-                                <?php echo tech_store_svg_icon('whatsapp', 'w-4 h-4 text-emerald-400'); ?>
-                                <span><?php esc_html_e('Consultar por WhatsApp / Asesoría', 'tech-store'); ?></span>
+                                <?php echo alex_store_svg_icon('whatsapp', 'w-4 h-4 text-emerald-400'); ?>
+                                <span><?php esc_html_e('Consultar por WhatsApp / Asesoría', 'alex-store'); ?></span>
                             </a>
                         </div>
 
                         <!-- Trust Guarantee Checklist -->
                         <div class="bg-neutral-50 p-4 rounded-2xl border border-neutral-200 space-y-2 text-xs text-neutral-600">
                             <div class="flex items-center gap-2">
-                                <span class="text-primary"><?php echo tech_store_svg_icon('truck', 'w-4 h-4'); ?></span>
-                                <span><?php esc_html_e('Envíos a todo el país o retiro en sucursales (Estelí y Managua).', 'tech-store'); ?></span>
+                                <span class="text-primary"><?php echo alex_store_svg_icon('truck', 'w-4 h-4'); ?></span>
+                                <span><?php esc_html_e('Envíos a todo el país o retiro en sucursales (Estelí y Managua).', 'alex-store'); ?></span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span class="text-primary"><?php echo tech_store_svg_icon('credit', 'w-4 h-4'); ?></span>
-                                <span><?php esc_html_e('Disponible financiamiento con Credex a 3 meses sin intereses.', 'tech-store'); ?></span>
+                                <span class="text-primary"><?php echo alex_store_svg_icon('credit', 'w-4 h-4'); ?></span>
+                                <span><?php esc_html_e('Disponible financiamiento con Credex a 3 meses sin intereses.', 'alex-store'); ?></span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span class="text-primary"><?php echo tech_store_svg_icon('shield', 'w-4 h-4'); ?></span>
-                                <span><?php esc_html_e('Garantía y respaldo directo en MR Soluciones.', 'tech-store'); ?></span>
+                                <span class="text-primary"><?php echo alex_store_svg_icon('shield', 'w-4 h-4'); ?></span>
+                                <span><?php esc_html_e('Garantía y respaldo directo en MR Soluciones.', 'alex-store'); ?></span>
                             </div>
                         </div>
 
@@ -166,13 +166,13 @@ get_header();
             <div class="mt-14 pt-10 border-t border-neutral-200" data-tabs-container>
                 <div class="flex items-center gap-2 border-b border-neutral-200 pb-4 mb-6 overflow-x-auto no-scrollbar">
                     <button type="button" data-tab-target="tab-description" class="ubx-pill-tab active">
-                        <?php esc_html_e('Descripción Detallada', 'tech-store'); ?>
+                        <?php esc_html_e('Descripción Detallada', 'alex-store'); ?>
                     </button>
                     <button type="button" data-tab-target="tab-specs" class="ubx-pill-tab">
-                        <?php esc_html_e('Especificaciones Técnicas', 'tech-store'); ?>
+                        <?php esc_html_e('Especificaciones Técnicas', 'alex-store'); ?>
                     </button>
                     <button type="button" data-tab-target="tab-shipping" class="ubx-pill-tab">
-                        <?php esc_html_e('Envíos & Garantía', 'tech-store'); ?>
+                        <?php esc_html_e('Envíos & Garantía', 'alex-store'); ?>
                     </button>
                 </div>
 
@@ -188,10 +188,10 @@ get_header();
 
                 <!-- Tab 3: Shipping & Returns -->
                 <div id="tab-shipping" data-tab-panel class="hidden prose max-w-none text-neutral-600 text-sm leading-relaxed">
-                    <h4 class="text-sm font-bold text-neutral-900 mb-2"><?php esc_html_e('Políticas de Envío & Retiro', 'tech-store'); ?></h4>
-                    <p><?php esc_html_e('Realizamos envíos a toda Nicaragua o puedes retirar tu compra directamente en nuestras sucursales de Estelí (Esquina de los bancos y Súper Las Segovias) o en Managua (Plaza Puntaldia).', 'tech-store'); ?></p>
-                    <h4 class="text-sm font-bold text-neutral-900 mt-4 mb-2"><?php esc_html_e('Garantía y Financiamiento', 'tech-store'); ?></h4>
-                    <p><?php esc_html_e('Todos nuestros equipos cuentan con garantía de fabricante. Puedes consultar requisitos de financiamiento con Credex a través de nuestro canal de WhatsApp.', 'tech-store'); ?></p>
+                    <h4 class="text-sm font-bold text-neutral-900 mb-2"><?php esc_html_e('Políticas de Envío & Retiro', 'alex-store'); ?></h4>
+                    <p><?php esc_html_e('Realizamos envíos a toda Nicaragua o puedes retirar tu compra directamente en nuestras sucursales de Estelí (Esquina de los bancos y Súper Las Segovias) o en Managua (Plaza Puntaldia).', 'alex-store'); ?></p>
+                    <h4 class="text-sm font-bold text-neutral-900 mt-4 mb-2"><?php esc_html_e('Garantía y Financiamiento', 'alex-store'); ?></h4>
+                    <p><?php esc_html_e('Todos nuestros equipos cuentan con garantía de fabricante. Puedes consultar requisitos de financiamiento con Credex a través de nuestro canal de WhatsApp.', 'alex-store'); ?></p>
                 </div>
             </div>
 
@@ -207,10 +207,10 @@ get_header();
             <section class="mt-12">
                 <div class="mb-6">
                     <h3 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
-                        <?php esc_html_e('Productos Relacionados', 'tech-store'); ?>
+                        <?php esc_html_e('Productos Relacionados', 'alex-store'); ?>
                     </h3>
                     <p class="text-xs text-neutral-500">
-                        <?php esc_html_e('Otras opciones recomendadas para ti', 'tech-store'); ?>
+                        <?php esc_html_e('Otras opciones recomendadas para ti', 'alex-store'); ?>
                     </p>
                 </div>
 
@@ -218,7 +218,7 @@ get_header();
                     <?php foreach ($related_ids as $r_id) :
                         $r_product = wc_get_product($r_id);
                         if ($r_product) {
-                            echo tech_store_product_card($r_product);
+                            echo alex_store_product_card($r_product);
                         }
                     endforeach; ?>
                 </ul>

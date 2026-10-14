@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 <div id="page" class="site flex flex-col min-h-screen">
     <a class="skip-link sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-primary focus:text-white focus:z-50" href="#content">
-        <?php esc_html_e('Saltar al contenido principal', 'tech-store'); ?>
+        <?php esc_html_e('Saltar al contenido principal', 'alex-store'); ?>
     </a>
 
     <!-- Smart Auto-Hiding Header (Slide-up on scroll down, Slide-down on scroll up) -->

@@ -57,6 +57,27 @@ module.exports = {
           light: '#f3f4f6',
           dark: '#111827',
         },
+        border: 'var(--border, #e2e8f0)',
+        input: 'var(--input, #e2e8f0)',
+        ring: 'var(--ring, #0f172a)',
+        background: 'var(--background, #ffffff)',
+        foreground: 'var(--foreground, #09090b)',
+        card: {
+          DEFAULT: 'var(--card, #ffffff)',
+          foreground: 'var(--card-foreground, #09090b)',
+        },
+        popover: {
+          DEFAULT: 'var(--popover, #ffffff)',
+          foreground: 'var(--popover-foreground, #09090b)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted, #f4f4f5)',
+          foreground: 'var(--muted-foreground, #71717a)',
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive, #ef4444)',
+          foreground: '#ffffff',
+        },
         accent: {
           DEFAULT: '#18181b',
           dark: '#09090b',
@@ -67,6 +88,10 @@ module.exports = {
           dark: '#27272a',
           light: '#e4e4e7',
         }
+      },
+      maxWidth: {
+        'site': '1480px',
+        'site-xl': '1560px',
       },
       fontFamily: {
         sans: ['var(--font-sans, Inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -83,8 +108,8 @@ module.exports = {
         'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
         'card': '0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 1px 4px -1px rgba(0, 0, 0, 0.03)',
         'card-hover': '0 12px 24px -6px rgba(0, 0, 0, 0.09), 0 4px 8px -2px rgba(0, 0, 0, 0.03)',
-        'cta': '0 4px 14px 0 rgba(37, 99, 235, 0.35)',
-        'cta-hover': '0 6px 20px rgba(37, 99, 235, 0.45)',
+        'cta': 'none',
+        'cta-hover': 'none',
         'drawer': '-10px 0 40px rgba(0, 0, 0, 0.15)',
         'dropdown': '0 10px 30px rgba(0, 0, 0, 0.08)',
         'modal': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',

@@ -5,12 +5,16 @@
 import { initCartDrawer } from './cart-drawer.js';
 import { initLiveSearch } from './live-search.js';
 import { initProductGallery } from './product-gallery.js';
+import { initTechSlider } from './tech-slider.js';
+import { initCheckoutValidation } from './checkout-validation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Core Modules
   initCartDrawer();
   initLiveSearch();
   initProductGallery();
+  initTechSlider();
+  initCheckoutValidation();
 
   // Announcement Bar Dismiss
   initAnnouncementBar();

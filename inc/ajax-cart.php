@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * Handle AJAX Add to Cart
  */
 function alex_store_ajax_add_to_cart() {
-    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('tech_store_nonce', 'nonce', false)) {
+    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('alex_store_nonce', 'nonce', false)) {
         wp_send_json_error(['message' => __('Sesión expirada', 'alex-store')]);
     }
 
@@ -55,7 +55,7 @@ add_action('wp_ajax_nopriv_tech_store_add_to_cart', 'alex_store_ajax_add_to_cart
  * Handle AJAX Update Cart Item Quantity / Remove
  */
 function alex_store_ajax_update_cart_item() {
-    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('tech_store_nonce', 'nonce', false)) {
+    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('alex_store_nonce', 'nonce', false)) {
         wp_send_json_error(['message' => __('Sesión expirada', 'alex-store')]);
     }
 
@@ -93,7 +93,7 @@ add_action('wp_ajax_nopriv_tech_store_update_cart_item', 'alex_store_ajax_update
  * Handle AJAX Get Cart Drawer HTML
  */
 function alex_store_ajax_get_cart_drawer() {
-    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('tech_store_nonce', 'nonce', false)) {
+    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('alex_store_nonce', 'nonce', false)) {
         wp_send_json_error(['message' => __('Sesión expirada', 'alex-store')]);
     }
 
@@ -244,7 +244,7 @@ function alex_store_get_cart_drawer_items_html() {
                 <?php esc_html_e('Impuestos y envío calculados al finalizar compra.', 'alex-store'); ?>
             </p>
             <div class="space-y-2">
-                <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="ubx-btn-primary w-full py-3 text-sm font-bold shadow-cta">
+                <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="ubx-btn-primary w-full py-3 text-sm font-bold">
                     <?php esc_html_e('Finalizar Compra', 'alex-store'); ?>
                     <?php echo alex_store_svg_icon('arrow-right', 'w-4 h-4'); ?>
                 </a>
@@ -257,4 +257,6 @@ function alex_store_get_cart_drawer_items_html() {
     <?php
     return ob_get_clean();
 }
-function tech_store_get_cart_drawer_items_html() { return alex_store_get_cart_drawer_items_html(); }
+if (!function_exists('tech_store_get_cart_drawer_items_html')) {
+    function tech_store_get_cart_drawer_items_html() { return alex_store_get_cart_drawer_items_html(); }
+}

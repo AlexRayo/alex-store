@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>MR Soluciones - Tecnología & E-commerce (Propuesta)</title>
+    <meta name="description" content="Especialistas en tecnología, smartphones, computación, gaming y audio con financiamiento Credex sin intereses y envíos a todo el país.">
+
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Compiled Design System & Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <style>
+        :root {
+            --color-primary: #0f172a;
+            --color-primary-dark: #020617;
+            --color-primary-light: #f8fafc;
+            --color-cta: #2563eb;
+            --color-cta-hover: #1d4ed8;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+        }
+        .dark-overlay-50 {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.5) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .banner-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .banner-bg-img,
+        .tech-slider-slide:hover .banner-bg-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-900 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+
+    <!-- 1. BARRA SUPERIOR DE ANUNCIOS -->
+    <div id="alex-announcement-bar" class="bg-neutral-900 text-neutral-200 text-xs font-medium py-2 px-4 relative z-50 border-b border-neutral-800">
+        <div class="site-container flex items-center justify-between">
+            <div class="flex-1 text-center truncate px-6">
+                <span class="inline-flex items-center justify-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    <span>3 meses 0% intereses con Credex | Envíos rápidos y seguros a todo el país</span>
+                </span>
+            </div>
+            <button 
+                type="button" 
+                id="alex-close-announcement" 
+                class="text-neutral-400 hover:text-white p-1 rounded-full hover:bg-neutral-800 transition-colors"
+                aria-label="Cerrar anuncio"
+            >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. CABECERA PRINCIPAL (STICKY & ELEGANTE) -->
+    <header id="alex-main-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all duration-300">
+        <div class="site-container">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
+                
+                <!-- Left: Mobile Menu Toggle & Brand Logo -->
+                <div class="flex items-center gap-3">
+                    <button 
+                        type="button" 
+                        id="alex-mobile-menu-toggle"
+                        class="lg:hidden p-2 -ml-2 text-neutral-700 hover:text-neutral-950 focus:outline-none"
+                        aria-label="Abrir menú"
+                    >
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    </button>
+
+                    <a href="index.html" class="flex items-center group" aria-label="MR Soluciones">
+                        <div class="bg-neutral-950 hover:bg-neutral-900 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl transition-all duration-200 shadow-sm border border-neutral-800/80 flex items-center">
+                            <img 
+                                src="https://mrsoluciones.online/wp-content/uploads/2023/03/logo-mrsoluciones.png" 
+                                onerror="this.onerror=null; this.src='assets/img/logo-mrsoluciones.png'" 
+                                alt="MR Soluciones - Tecnología a tu alcance" 
+                                class="h-6 sm:h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                            />
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Center: Predictive Live Search Bar (Desktop) -->
+                <div class="hidden md:flex flex-1 max-w-xl mx-4">
+                    <div class="w-full relative">
+                        <button 
+                            type="button" 
+                            data-action="open-search-modal"
+                            class="w-full flex items-center gap-3 bg-neutral-100 hover:bg-neutral-200/70 border border-neutral-200 rounded-xl px-4 py-2.5 text-xs text-neutral-500 text-left transition-all group"
+                        >
+                            <svg class="w-4 h-4 text-neutral-400 group-hover:text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            <span class="flex-1">Buscar celulares, laptops, gaming, audio...</span>
+                            <kbd class="hidden sm:inline-block text-[10px] font-semibold bg-white border border-neutral-300 text-neutral-500 px-1.5 py-0.5 rounded shadow-2xs">ESC</kbd>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Actions: WhatsApp Direct & Slide-over Cart -->
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <a 
+                        href="https://wa.me/50557935010" 
+                        target="_blank" 
+                        class="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 px-3.5 py-2.5 rounded-xl transition-all"
+                    >
+                        <svg class="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.397 0 .017 5.38.017 12.014c0 2.118.552 4.185 1.602 6.007L.001 24l6.155-1.614a11.968 11.968 0 0 0 5.875 1.53h.005c6.633 0 12.013-5.38 12.013-12.014 0-3.208-1.25-6.223-3.518-8.491A11.933 11.933 0 0 0 12.031 0zm0 21.96a9.927 9.927 0 0 1-5.06-1.385l-.363-.215-3.76.986.999-3.666-.236-.376A9.923 9.923 0 0 1 2.062 12.01c0-5.498 4.473-9.972 9.974-9.972 2.664 0 5.168 1.038 7.051 2.92a9.914 9.914 0 0 1 2.923 7.056c0 5.498-4.474 9.972-9.979 9.972zm5.466-7.469c-.3-.15-1.774-.875-2.049-.975-.274-.1-.474-.15-.674.15s-.774.975-.95 1.175-.35.225-.65.075c-.3-.15-1.267-.467-2.413-1.489-.892-.796-1.494-1.78-1.669-2.08-.175-.3-.019-.462.131-.611.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525s-.674-1.625-.924-2.225c-.244-.585-.493-.506-.674-.515-.175-.009-.375-.011-.575-.011s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.899 1.225 3.1c.15.2 2.115 3.23 5.125 4.529.716.309 1.275.494 1.71.633.72.229 1.375.197 1.893.12.578-.086 1.774-.725 2.024-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/></svg>
+                        <span>WhatsApp: 50557935010</span>
+                    </a>
+
+                    <button 
+                        type="button" 
+                        data-action="open-search-modal"
+                        class="md:hidden p-2 text-neutral-700 hover:text-neutral-950"
+                        aria-label="Buscar"
+                    >
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button 
+                        type="button" 
+                        data-action="open-cart-drawer"
+                        class="relative inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-bold px-3.5 sm:px-4 py-2.5 rounded-xl text-xs transition-colors shadow-sm"
+                        aria-label="Ver carrito"
+                    >
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span class="hidden sm:inline">Carrito</span>
+                        <span class="alex-cart-count-badge bg-cta text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-2xs">2</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. BARRA HORIZONTAL DE CATEGORÍAS -->
+        <nav class="border-t border-neutral-100 bg-white/80 overflow-x-auto no-scrollbar py-2.5">
+            <div class="site-container flex items-center gap-2 sm:gap-3 text-xs font-semibold whitespace-nowrap">
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition-colors inline-flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i><span>Todo el Catálogo</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="smartphone" class="w-3.5 h-3.5"></i><span>Celulares & Tablets</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="laptop" class="w-3.5 h-3.5"></i><span>Laptops & PC</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i><span>Gaming & Consolas</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="headphones" class="w-3.5 h-3.5"></i><span>Audio Hi-Fi</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="home" class="w-3.5 h-3.5"></i><span>Smart Home & Asistentes</span></a>
+                <a href="#catalogo" class="px-3.5 py-1.5 rounded-lg text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100 transition-colors inline-flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5"></i><span>Hubs & Conectividad</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1">
+
+        <!-- 4. HERO TECH SHOWCASE (shadcn/ui Inspired Slider Carousel) -->
+        <section class="site-container py-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Main Tech Slider (2 cols) -> Sweep & Drag Gesture Enabled -->
+                <div class="lg:col-span-2 relative tech-slider-wrapper shadow-card border border-neutral-200/80 bg-neutral-950 text-white min-h-[460px] md:min-h-[500px] flex flex-col justify-between" data-tech-slider aria-label="Destacados Tecnológicos">
+                    
+                    <!-- Track / Slides Container -->
+                    <div class="tech-slider-track h-full">
+                        
+                        <!-- SLIDE 1: Flagship Tech / Smartphones & Ecosystem -->
+                        <div class="tech-slider-slide relative bg-gradient-to-br from-primary via-primary-dark to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                            <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                            <img src="assets/img/hero-smartphones-bg.jpg" alt="Celulares Flagship" class="banner-bg-img" />
+                            <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                            <div class="absolute -right-20 -top-20 w-96 h-96 bg-cta/15 rounded-full blur-3xl pointer-events-none z-[2]"></div>
+
+                            <div class="relative z-10 max-w-xl">
+                                <span class="shadcn-badge bg-white/10 text-white border-white/20 backdrop-blur-md mb-4 shadow-sm inline-flex items-center gap-1.5">
+                                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    <span>3 Meses 0% Interés con Credex</span>
+                                </span>
+
+                                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    Tecnología de última generación a tu alcance.
+                                </h1>
+
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    Encuentra los últimos modelos en celulares, computadoras, gaming, audio y seguridad con respaldo oficial.
+                                </p>
+
+                                <!-- Tech Telemetry Pills -->
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <span class="text-[11px] font-semibold text-white/90 bg-white/10 px-2.5 py-1 rounded-md border border-white/15 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="zap" class="w-3 h-3 text-amber-400"></i><span>Pantallas OLED 120Hz</span></span>
+                                    <span class="text-[11px] font-semibold text-white/90 bg-white/10 px-2.5 py-1 rounded-md border border-white/15 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-400"></i><span>Garantía Oficial 1 Año</span></span>
+                                    <span class="text-[11px] font-semibold text-white/90 bg-white/10 px-2.5 py-1 rounded-md border border-white/15 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="truck" class="w-3 h-3 text-blue-400"></i><span>Envíos Rápidos</span></span>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                                <a href="#catalogo" class="shadcn-btn bg-white hover:bg-neutral-100 text-neutral-950 font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2">
+                                    Ver Catálogo Completo
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                </a>
+                                <a href="#catalogo" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    Explorar Celulares
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 2: Gaming & Workstations (Pro Performance) -->
+                        <div class="tech-slider-slide relative bg-gradient-to-br from-neutral-900 via-[#0c1222] to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                            <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                            <img src="assets/img/hero-gaming-bg.jpg" alt="Gaming & Setups Pro" class="banner-bg-img" />
+                            <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                            <div class="absolute -right-20 -top-20 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none z-[2]"></div>
+
+                            <div class="relative z-10 max-w-xl">
+                                <span class="shadcn-badge bg-blue-500/20 text-blue-200 border-blue-400/30 backdrop-blur-md mb-4 shadow-sm inline-flex items-center gap-1.5">
+                                    <i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-blue-400"></i>
+                                    <span>ALTO RENDIMIENTO & GAMING</span>
+                                </span>
+
+                                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    Laptops Pro & Setups Gaming de Élite
+                                </h2>
+
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    Potencia sin límites para programadores, creadores y gamers. Laptops con GPU RTX serie 40, procesadores M3 y monitores de alta frecuencia.
+                                </p>
+
+                                <!-- Tech Telemetry Pills -->
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <span class="text-[11px] font-semibold text-blue-200 bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="cpu" class="w-3 h-3 text-blue-400"></i><span>RTX Serie 40 Ready</span></span>
+                                    <span class="text-[11px] font-semibold text-blue-200 bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="zap" class="w-3 h-3 text-amber-400"></i><span>32GB RAM DDR5</span></span>
+                                    <span class="text-[11px] font-semibold text-blue-200 bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="monitor" class="w-3 h-3 text-sky-400"></i><span>Monitores 240Hz</span></span>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                                <a href="#catalogo" class="shadcn-btn-primary px-6 py-2.5 text-sm font-bold">
+                                    Explorar Gaming & PC
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                </a>
+                                <a href="#catalogo" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    Ver Laptops
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- SLIDE 3: Audio Hi-Fi, Smart Home & Cuotas Credex -->
+                        <div class="tech-slider-slide relative bg-gradient-to-br from-[#111827] via-[#1e1b4b] to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                            <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                            <img src="assets/img/hero-audio-bg.jpg" alt="Audio Hi-Fi & Smart Living" class="banner-bg-img" />
+                            <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                            <div class="absolute -right-24 -top-24 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none z-[2]"></div>
+
+                            <div class="relative z-10 max-w-xl">
+                                <span class="shadcn-badge bg-emerald-500/20 text-emerald-200 border-emerald-400/30 backdrop-blur-md mb-4 shadow-sm inline-flex items-center gap-1.5">
+                                    <i data-lucide="credit-card" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    <span>FINANCIAMIENTO 0% INTERÉS</span>
+                                </span>
+
+                                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    Sonido Inmersivo & Facilidades con Credex
+                                </h2>
+
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    Audífonos con cancelación de ruido activa, asistentes de voz Alexa y seguridad para tu hogar. Llévatelo hoy hasta en 3 meses al 0%.
+                                </p>
+
+                                <!-- Tech Telemetry Pills -->
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <span class="text-[11px] font-semibold text-emerald-200 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="headphones" class="w-3 h-3 text-emerald-400"></i><span>Cancelación Activa ANC</span></span>
+                                    <span class="text-[11px] font-semibold text-emerald-200 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="credit-card" class="w-3 h-3 text-emerald-400"></i><span>3 Meses 0% con Credex</span></span>
+                                    <span class="text-[11px] font-semibold text-emerald-200 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-800/60 backdrop-blur-sm inline-flex items-center gap-1.5"><i data-lucide="home" class="w-3 h-3 text-emerald-400"></i><span>Smart Living</span></span>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                                <a href="https://wa.me/50557935010" target="_blank" class="shadcn-btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.397 0 .017 5.38.017 12.014c0 2.118.552 4.185 1.602 6.007L.001 24l6.155-1.614a11.968 11.968 0 0 0 5.875 1.53h.005c6.633 0 12.013-5.38 12.013-12.014 0-3.208-1.25-6.223-3.518-8.491A11.933 11.933 0 0 0 12.031 0zm0 21.96a9.927 9.927 0 0 1-5.06-1.385l-.363-.215-3.76.986.999-3.666-.236-.376A9.923 9.923 0 0 1 2.062 12.01c0-5.498 4.473-9.972 9.974-9.972 2.664 0 5.168 1.038 7.051 2.92a9.914 9.914 0 0 1 2.923 7.056c0 5.498-4.474 9.972-9.979 9.972zm5.466-7.469c-.3-.15-1.774-.875-2.049-.975-.274-.1-.474-.15-.674.15s-.774.975-.95 1.175-.35.225-.65.075c-.3-.15-1.267-.467-2.413-1.489-.892-.796-1.494-1.78-1.669-2.08-.175-.3-.019-.462.131-.611.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525s-.674-1.625-.924-2.225c-.244-.585-.493-.506-.674-.515-.175-.009-.375-.011-.575-.011s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.899 1.225 3.1c.15.2 2.115 3.23 5.125 4.529.716.309 1.275.494 1.71.633.72.229 1.375.197 1.893.12.578-.086 1.774-.725 2.024-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/></svg>
+                                    Solicitar Cuotas por WhatsApp
+                                </a>
+                                <a href="#catalogo" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    Ver Colección de Audio
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Floating Navigation Arrows -->
+                    <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+                        <button type="button" class="tech-slider-prev tech-slider-arrow" aria-label="Anterior slide">
+                            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <button type="button" class="tech-slider-next tech-slider-arrow" aria-label="Siguiente slide">
+                            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Bottom Progress Indicators -->
+                    <div class="tech-slider-dots absolute bottom-5 right-6 z-20 flex items-center gap-2" role="tablist">
+                        <button type="button" class="tech-slider-dot active" role="tab" aria-label="Slide 1"></button>
+                        <button type="button" class="tech-slider-dot" role="tab" aria-label="Slide 2"></button>
+                        <button type="button" class="tech-slider-dot" role="tab" aria-label="Slide 3"></button>
+                    </div>
+
+                </div>
+
+                <!-- Right Side 2 Mini-Banners (1 col) -->
+                <div class="flex flex-col gap-6 h-full justify-between">
+                    
+                    <!-- Top Mini Banner: Voice Assistants & Audio -->
+                    <div class="flex-1 bg-gradient-to-br from-neutral-900 to-neutral-950 text-white rounded-3xl p-6 sm:p-7 relative overflow-hidden flex flex-col justify-between border border-neutral-800 shadow-sm group hover:border-neutral-700 transition-all">
+                        <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                        <img src="assets/img/banner-smart-home-bg.jpg" alt="Asistentes de Voz y Audio" class="banner-bg-img" />
+                        <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                        <div class="relative z-10">
+                            <span class="shadcn-badge bg-white/10 text-white/90 border-white/20 text-[10px] mb-2">
+                                Sonido & Smart Living
+                            </span>
+                            <h3 class="text-lg font-bold text-white leading-snug mb-1.5">
+                                Asistentes de Voz & Audio
+                            </h3>
+                            <p class="text-xs text-white/70 leading-relaxed">
+                                Amazon Alexa, audífonos con cancelación de ruido y parlantes inteligentes.
+                            </p>
+                        </div>
+                        <div class="relative z-10 mt-4">
+                            <a href="#catalogo" class="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-white/80 group-hover:translate-x-1 transition-all">
+                                Explorar categoría &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Mini Banner: Credex Financing -->
+                    <div class="flex-1 bg-neutral-100 text-neutral-900 rounded-3xl p-6 sm:p-7 relative overflow-hidden flex flex-col justify-between border border-neutral-200/80 shadow-sm group hover:border-neutral-300 transition-all">
+                        <div class="relative z-10">
+                            <span class="shadcn-badge bg-neutral-200 text-neutral-800 border-neutral-300 text-[10px] mb-2">
+                                Facilidades de Pago
+                            </span>
+                            <h3 class="text-lg font-bold text-neutral-900 leading-snug mb-1.5">
+                                Compra en Cuotas sin Intereses
+                            </h3>
+                            <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+                                Aplica con Credex y tarjetas bancarias en minutos con entrega inmediata.
+                            </p>
+                        </div>
+                        <div class="relative z-10 mt-4">
+                            <a href="https://wa.me/50557935010" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-900 hover:text-cta group-hover:translate-x-1 transition-all">
+                                Consultar por WhatsApp &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. PROMO CAMPAIGN BANNER -->
+        <section class="site-container py-3">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary via-primary-dark to-neutral-950 text-white p-6 sm:p-8 border border-white/10 shadow-sm group">
+                <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                <img src="assets/img/banner-promo-deals-bg.jpg" alt="Promoción Especial Descuentos" class="banner-bg-img" />
+                <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="max-w-2xl">
+                        <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5">
+                            <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-400"></i>
+                            <span>Promoción Especial por Tiempo Limitado</span>
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black tracking-tight text-white mb-2">
+                            Hasta 40% OFF en Celulares & Gaming
+                        </h3>
+                        <p class="text-xs sm:text-sm text-white/80 leading-relaxed">
+                            Aprovecha descuentos únicos con entrega rápida en todo el país y financiamiento Credex sin intereses.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                        <a href="#catalogo" class="shadcn-btn bg-white hover:bg-neutral-100 text-neutral-950 font-bold px-6 py-3 rounded-xl text-xs sm:text-sm transition-all shadow-sm">
+                            Ver Ofertas Especiales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. POPULAR CATEGORIES GRID -->
+        <section class="site-container py-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">Categorías Populares</h2>
+                    <p class="text-xs sm:text-sm text-neutral-500">Explora nuestro catálogo por departamento especializado</p>
+                </div>
+                <a href="#catalogo" class="shadcn-btn-outline text-xs">Ver Catálogo</a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="smartphone" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Celulares</span>
+                </a>
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="laptop" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Laptops & PC</span>
+                </a>
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="gamepad-2" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Gaming</span>
+                </a>
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="headphones" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Audio Hi-Fi</span>
+                </a>
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Componentes</span>
+                </a>
+                <a href="#catalogo" class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2.5">
+                    <div class="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="home" class="w-6 h-6 text-neutral-800"></i>
+                    </div>
+                    <span class="text-xs font-bold text-neutral-800 group-hover:text-primary transition-colors">Smart Home</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 7. PRODUCTOS DESTACADOS (8 CARDS CON NUEVO DISEÑO LIMPIO) -->
+        <section id="catalogo" class="site-container py-8">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">Ofertas & Destacados</h2>
+                    <p class="text-xs sm:text-sm text-neutral-500">Equipos de alta gama con respaldo de marca y entrega inmediata</p>
+                </div>
+                <span class="text-xs font-semibold text-neutral-500">Mostrando 8 productos</span>
+            </div>
+
+            <!-- Grid de 4 Columnas -->
+            <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 p-0 m-0 list-none">
+                
+                <!-- PRODUCT 1: Galaxy S26 Plus (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-14%</span>
+                        <img src="assets/img/galaxy-s26.jpg" alt="Galaxy S26 Plus" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Galaxy S26 Plus 256GB 12GB RAM</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 39,733.81</del> <ins>C$ 34,000.28</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="1" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 2: iPhone 16 Pro Max (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-9%</span>
+                        <img src="assets/img/iphone-16-pro.jpg" alt="iPhone 16 Pro Max" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Apple iPhone 16 Pro Max 256GB Titanio</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 46,900.00</del> <ins>C$ 42,500.00</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="2" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 3: MacBook Pro (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-10%</span>
+                        <img src="assets/img/macbook-pro.png" alt="MacBook Pro" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Apple MacBook Pro 16" Chip M3 Max 36GB</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 99,500.00</del> <ins>C$ 89,900.00</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="3" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 4: RTX 5090 (Regular) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <img src="assets/img/rtx-5090.jpg" alt="GeForce RTX 5090" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Nvidia GeForce RTX 5090 32GB GDDR7</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <span>C$ 78,900.00</span>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="4" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 5: Control PS5 Razer (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-9%</span>
+                        <img src="assets/img/ps5-controller.jpg" alt="Control Razer PS5" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Control Razer Raiju V3 Pro PS5 / PC Inalámbrico</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 9,879.99</del> <ins>C$ 8,981.81</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="5" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 6: DJI Osmo Pocket 3 (OUT OF STOCK - DEMONSTRATING NEW BEHAVIOR) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between opacity-95">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <img src="assets/img/osmo-pocket.jpg" alt="DJI Osmo Pocket 3" class="max-h-full max-w-full object-contain grayscale-[15%] transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Cámara DJI Osmo Pocket 3 Creator Combo 4K</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <!-- Replaced price with No disponible indicator -->
+                                <span class="text-xs sm:text-sm font-semibold text-neutral-400">
+                                    No disponible
+                                </span>
+                            </div>
+                            <!-- No cart icon rendered when out of stock -->
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 7: Audífonos Hi-Fi ANC (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-14%</span>
+                        <img src="assets/img/headphones.jpg" alt="Audífonos Hi-Fi ANC" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Audífonos Aurae Hi-Fi ANC Cancelación Activa de Ruido</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 7,990.00</del> <ins>C$ 6,850.00</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="7" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- PRODUCT 8: Echo Dot 5ta Gen (Sale) -->
+                <li class="product-card group ubx-card list-none h-full relative flex flex-col justify-between">
+                    <figure class="relative w-full h-48 md:h-52 bg-white flex items-center justify-center p-4 overflow-hidden border-b border-neutral-100">
+                        <span class="badge-sale absolute top-2.5 left-2.5 z-10 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border border-white/20">-19%</span>
+                        <img src="assets/img/echo-dot.jpg" alt="Echo Dot 5ta Gen" class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="text-xs sm:text-sm font-medium text-neutral-900 hover:text-cta transition-colors line-clamp-2 leading-snug">
+                            <a href="#catalogo">Amazon Echo Dot 5ta Gen con Asistente de Voz Alexa</a>
+                        </h3>
+                        <div class="mt-3 pt-2.5 border-t border-neutral-100 flex items-center justify-between gap-2">
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm sm:text-base font-bold text-neutral-900 tracking-tight leading-tight product-card-price">
+                                    <del>C$ 2,650.00</del> <ins>C$ 2,150.00</ins>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="button" class="alex-ajax-add-to-cart bg-cta hover:bg-cta-hover text-white p-2 rounded-lg transition-colors active:scale-95 flex items-center justify-center" data-product-id="8" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- 8. PROMOS DUALES -->
+        <section class="site-container py-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Promo 1: Gaming -->
+                <div class="bg-primary text-white rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border border-white/10 shadow-subtle min-h-[220px] group">
+                    <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                    <img src="assets/img/promo-gaming-pc-bg.jpg" alt="Ecosistema Gaming" class="banner-bg-img" />
+                    <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                    <div class="relative z-10 max-w-sm">
+                        <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-white/10 px-2.5 py-1 rounded-md mb-3 border border-white/10">
+                            <i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-blue-400 mr-1.5"></i>
+                            <span>Ecosistema Gaming</span>
+                        </span>
+                        <h3 class="text-2xl font-black text-white leading-tight mb-2">
+                            Componentes & Periféricos Pro
+                        </h3>
+                        <p class="text-xs text-white/80 leading-relaxed font-normal">
+                            Teclados mecánicos, tarjetas gráficas RTX y monitores gamer de alta tasa de refresco.
+                        </p>
+                    </div>
+                    <div class="relative z-10 mt-6">
+                        <a href="#catalogo" class="shadcn-btn bg-white hover:bg-neutral-100 text-neutral-900 text-xs font-bold px-5 py-2.5 rounded-xl transition-all">
+                            Ver Zona Gamer &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Promo 2: Credex -->
+                <div class="bg-neutral-900 text-white rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border border-neutral-800 shadow-subtle min-h-[220px] group">
+                    <!-- Background Image & 75%-50% Dark Gradient Layer -->
+                    <img src="assets/img/promo-finance-credex-bg.jpg" alt="Financiamiento Inmediato Credex" class="banner-bg-img" />
+                    <div class="dark-overlay-50" aria-hidden="true"></div>
+
+                    <div class="relative z-10 max-w-sm">
+                        <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-blue-300 bg-blue-900/40 px-2.5 py-1 rounded-md mb-3 border border-blue-500/20">
+                            <i data-lucide="credit-card" class="w-3.5 h-3.5 text-blue-400 mr-1.5"></i>
+                            <span>Financiamiento Inmediato</span>
+                        </span>
+                        <h3 class="text-2xl font-black text-white leading-tight mb-2">
+                            Llévalo hoy en 3 meses al 0%
+                        </h3>
+                        <p class="text-xs text-neutral-300 leading-relaxed font-normal">
+                            Aplica con Credex en menos de 5 minutos desde WhatsApp con entrega express en todo el país.
+                        </p>
+                    </div>
+                    <div class="relative z-10 mt-6">
+                        <a href="https://wa.me/50557935010" target="_blank" class="shadcn-btn bg-cta hover:bg-cta-hover text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all">
+                            Solicitar por WhatsApp &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. CÓMO FUNCIONA / CRÉDITO CREDEX -->
+        <section class="site-container py-10">
+            <div class="bg-white rounded-3xl border border-neutral-200 p-6 sm:p-10 shadow-subtle">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1 block">Pasos Sencillos</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">¿Cómo comprar en cuotas con Credex?</h2>
+                    <p class="text-xs sm:text-sm text-neutral-500 mt-2">Accede a tus dispositivos favoritos pagando en plazos sin intereses ni trámites engorrosos.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80">
+                        <span class="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm mb-3">1</span>
+                        <h4 class="text-base font-bold text-neutral-900 mb-1">Elige tus productos</h4>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Navega por nuestro catálogo y añade los artículos que desees a tu orden.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80">
+                        <span class="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm mb-3">2</span>
+                        <h4 class="text-base font-bold text-neutral-900 mb-1">Aplica con Credex</h4>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Completa tu solicitud en minutos con tu cédula y aprobación inmediata en línea.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80">
+                        <span class="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm mb-3">3</span>
+                        <h4 class="text-base font-bold text-neutral-900 mb-1">Recibe en tu puerta</h4>
+                        <p class="text-xs text-neutral-600 leading-relaxed">Enviamos tu equipo de forma rápida y asegurada directamente a tu hogar o sucursal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. TRUST BADGES -->
+        <section class="site-container py-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="p-4 bg-white rounded-2xl border border-neutral-200/80 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="truck" class="w-5 h-5 text-neutral-800"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-900">Envíos Rápidos</h4>
+                        <p class="text-[11px] text-neutral-500">A todo el territorio nacional</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-2xl border border-neutral-200/80 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="credit-card" class="w-5 h-5 text-neutral-800"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-900">0% Interés</h4>
+                        <p class="text-[11px] text-neutral-500">Hasta 3 meses con Credex</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-2xl border border-neutral-200/80 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-neutral-800"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-900">Garantía Oficial</h4>
+                        <p class="text-[11px] text-neutral-500">Equipos 100% originales</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-white rounded-2xl border border-neutral-200/80 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-neutral-800"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-neutral-900">Soporte Directo</h4>
+                        <p class="text-[11px] text-neutral-500">Atención personalizada en WhatsApp</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 11. FOOTER -->
+    <footer class="bg-neutral-900 text-neutral-300 pt-12 pb-24 md:pb-12 border-t border-neutral-800">
+        <div class="site-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center group" aria-label="MR Soluciones">
+                        <img 
+                            src="https://mrsoluciones.online/wp-content/uploads/2023/03/logo-mrsoluciones.png" 
+                            onerror="this.onerror=null; this.src='assets/img/logo-mrsoluciones.png'" 
+                            alt="MR Soluciones - Tecnología a tu alcance" 
+                            class="h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-105"
+                        />
+                    </a>
+                    <p class="text-xs text-neutral-400 leading-relaxed max-w-sm">
+                        Especialistas en tecnología, telefonía móvil, computación, audio, gaming y sistemas de seguridad. Ofrecemos financiamiento sin intereses y envíos a todo el país.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/50557935010" target="_blank" class="inline-flex items-center gap-2 bg-neutral-800 border border-neutral-700 text-white font-semibold px-3.5 py-2 rounded-xl text-xs hover:bg-neutral-700 transition-colors">
+                            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.397 0 .017 5.38.017 12.014c0 2.118.552 4.185 1.602 6.007L.001 24l6.155-1.614a11.968 11.968 0 0 0 5.875 1.53h.005c6.633 0 12.013-5.38 12.013-12.014 0-3.208-1.25-6.223-3.518-8.491A11.933 11.933 0 0 0 12.031 0zm0 21.96a9.927 9.927 0 0 1-5.06-1.385l-.363-.215-3.76.986.999-3.666-.236-.376A9.923 9.923 0 0 1 2.062 12.01c0-5.498 4.473-9.972 9.974-9.972 2.664 0 5.168 1.038 7.051 2.92a9.914 9.914 0 0 1 2.923 7.056c0 5.498-4.474 9.972-9.979 9.972zm5.466-7.469c-.3-.15-1.774-.875-2.049-.975-.274-.1-.474-.15-.674.15s-.774.975-.95 1.175-.35.225-.65.075c-.3-.15-1.267-.467-2.413-1.489-.892-.796-1.494-1.78-1.669-2.08-.175-.3-.019-.462.131-.611.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525s-.674-1.625-.924-2.225c-.244-.585-.493-.506-.674-.515-.175-.009-.375-.011-.575-.011s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.899 1.225 3.1c.15.2 2.115 3.23 5.125 4.529.716.309 1.275.494 1.71.633.72.229 1.375.197 1.893.12.578-.086 1.774-.725 2.024-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/></svg>
+                            <span>WhatsApp: 50557935010</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Nuestras Sucursales</h4>
+                    <ul class="space-y-2.5 text-xs text-neutral-400">
+                        <li><strong class="text-neutral-200 block">Estelí (Central):</strong> Esquina de los bancos 75 vrs al este</li>
+                        <li><strong class="text-neutral-200 block">Managua:</strong> Plaza Puntaldia, Pista Jean Paul Genie</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Horario de Atención</h4>
+                    <ul class="space-y-2 text-xs text-neutral-400">
+                        <li>Lunes a Viernes: 8:00 AM ~ 6:00 PM</li>
+                        <li>Sábados: 9:00 AM ~ 5:00 PM</li>
+                        <li>Domingos: Atención vía WhatsApp</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Financiamiento</h4>
+                    <img src="assets/img/credex.png" alt="Credex Cuotas" class="h-8 object-contain mb-3 bg-white p-1 rounded-md" />
+                    <p class="text-xs text-neutral-400 leading-relaxed">
+                        Paga en 3 meses al 0% de interés en toda la tienda.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+                <p>&copy; 2026 MR Soluciones. Todos los derechos reservados. Propuesta de prototipo estático.</p>
+                <div class="flex items-center gap-4">
+                    <span class="hover:text-neutral-300">Términos y Condiciones</span>
+                    <span class="hover:text-neutral-300">Política de Privacidad</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 12. SLIDE-OVER CART DRAWER INTERACTIVO -->
+    <div id="alex-cart-drawer-overlay" class="hidden fixed inset-0 bg-neutral-950/60 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="alex-cart-drawer-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out">
+            
+            <!-- Drawer Header -->
+            <div class="p-5 border-b border-neutral-100 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 text-neutral-900"></i>
+                    <h3 class="text-base font-bold text-neutral-900">Tu Carrito de Compras</h3>
+                </div>
+                <button type="button" data-action="close-cart-drawer" class="text-neutral-400 hover:text-neutral-900 p-1 rounded-lg hover:bg-neutral-100">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Drawer Items (Dynamic) -->
+            <div id="alex-cart-drawer-items" class="flex-1 overflow-y-auto p-5">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-5 border-t border-neutral-100 bg-neutral-50/50 space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-neutral-600">Subtotal estimado:</span>
+                    <span id="alex-cart-drawer-subtotal" class="text-xl font-black text-neutral-900 tracking-tight">C$ 0.00</span>
+                </div>
+                <p class="text-[11px] text-neutral-400 text-center">Envíos rápidos a todo el país y financiamiento Credex disponible.</p>
+                <div class="space-y-2">
+                    <a href="https://wa.me/50557935010?text=Hola,%20deseo%20completar%20mi%20pedido%20en%20MR%20Soluciones" target="_blank" class="shadcn-btn-primary w-full py-3 text-sm font-bold flex items-center justify-center gap-2">
+                        <span>Continuar al Pago</span>
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <button type="button" data-action="close-cart-drawer" class="shadcn-btn-outline w-full py-2 text-xs font-semibold">
+                        Seguir Explorando
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 13. PREDICTIVE LIVE SEARCH MODAL -->
+    <div id="alex-search-modal" class="hidden fixed inset-0 bg-neutral-950/70 backdrop-blur-sm z-50 flex flex-col items-center justify-start p-4 sm:p-6 md:p-12 overflow-y-auto">
+        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden" onclick="event.stopPropagation()">
+            <div class="p-4 border-b border-neutral-100 flex items-center gap-3">
+                <svg class="w-5 h-5 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input 
+                    type="search" 
+                    id="alex-live-search-input" 
+                    placeholder="Escribe el nombre del producto (ej: iPhone, Galaxy, RTX, PS5)..." 
+                    class="flex-1 text-sm bg-transparent border-none outline-none focus:ring-0 text-neutral-900 placeholder:text-neutral-400"
+                    autocomplete="off"
+                />
+                <button type="button" id="alex-close-search-modal" class="text-neutral-400 hover:text-neutral-900 p-1 rounded-lg">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div id="alex-search-modal-results" class="max-h-[60vh] overflow-y-auto">
+                <!-- Filtered in real-time by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 14. MOBILE MENU DRAWER -->
+    <div id="alex-mobile-menu-overlay" class="hidden fixed inset-0 bg-neutral-950/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="alex-mobile-menu-drawer" class="fixed top-0 left-0 h-full w-4/5 max-w-xs bg-white shadow-2xl z-50 flex flex-col justify-between -translate-x-full transition-transform duration-300">
+            <div class="p-5 border-b border-neutral-100 flex items-center justify-between">
+                <span class="text-base font-black text-neutral-950">Menú Principal</span>
+                <button type="button" id="alex-close-mobile-menu" class="p-1 rounded-lg text-neutral-500 hover:bg-neutral-100">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <div class="flex-1 p-5 space-y-4 text-sm font-semibold">
+                <a href="#catalogo" class="block py-2 text-neutral-900 border-b border-neutral-100" onclick="document.getElementById('alex-close-mobile-menu').click()">Catálogo Completo</a>
+                <a href="#catalogo" class="block py-2 text-neutral-600 border-b border-neutral-100" onclick="document.getElementById('alex-close-mobile-menu').click()">Celulares & Smartphones</a>
+                <a href="#catalogo" class="block py-2 text-neutral-600 border-b border-neutral-100" onclick="document.getElementById('alex-close-mobile-menu').click()">Laptops & Computadoras</a>
+                <a href="#catalogo" class="block py-2 text-neutral-600 border-b border-neutral-100" onclick="document.getElementById('alex-close-mobile-menu').click()">Gaming & Periféricos</a>
+                <a href="#catalogo" class="block py-2 text-neutral-600 border-b border-neutral-100" onclick="document.getElementById('alex-close-mobile-menu').click()">Audio & Smart Living</a>
+                <a href="https://wa.me/50557935010" target="_blank" class="block py-2 text-emerald-600 font-bold inline-flex items-center gap-1.5"><i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i><span>WhatsApp: 50557935010</span></a>
+            </div>
+            <div class="p-5 border-t border-neutral-100 text-xs text-neutral-500 text-center">
+                MR Soluciones &copy; 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- 15. MOBILE BOTTOM STICKY BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-neutral-200 py-2 px-6 flex items-center justify-around shadow-lg">
+        <a href="#catalogo" class="flex flex-col items-center text-[10px] font-semibold text-neutral-700">
+            <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
+            <span>Inicio</span>
+        </a>
+        <button type="button" data-action="open-search-modal" class="flex flex-col items-center text-[10px] font-semibold text-neutral-700">
+            <i data-lucide="search" class="w-5 h-5 mb-0.5"></i>
+            <span>Buscar</span>
+        </button>
+        <button type="button" data-action="open-cart-drawer" class="flex flex-col items-center text-[10px] font-semibold text-neutral-700 relative">
+            <i data-lucide="shopping-cart" class="w-5 h-5 mb-0.5"></i>
+            <span>Carrito</span>
+            <span class="alex-cart-count-badge absolute -top-1 right-1 bg-cta text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </button>
+        <a href="https://wa.me/50557935010" target="_blank" class="flex flex-col items-center text-[10px] font-semibold text-emerald-600">
+            <i data-lucide="message-circle" class="w-5 h-5 mb-0.5"></i>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Standalone Prototype Logic Script -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

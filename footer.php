@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * The footer for Tech Store theme
  *
@@ -14,7 +14,6 @@ if (!defined('ABSPATH')) {
     <!-- Global Footer -->
     <footer id="colophon" class="site-footer mt-auto">
         <?php get_template_part('template-parts/footer/trust-badges'); ?>
-        <?php get_template_part('template-parts/footer/newsletter'); ?>
         <?php get_template_part('template-parts/footer/footer-nav'); ?>
     </footer>
 </div><!-- #page -->

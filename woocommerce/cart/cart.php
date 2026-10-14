@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Cart Page Template (Amazon.com Inspired Layout - Capitalized Titles & Alt)
  *
@@ -13,7 +13,7 @@ do_action('woocommerce_before_cart');
 $cart_count = WC()->cart->get_cart_contents_count();
 ?>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4">
+<div class="site-container py-2 sm:py-4">
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         
@@ -26,14 +26,14 @@ $cart_count = WC()->cart->get_cart_contents_count();
                 <div class="flex items-baseline justify-between pb-4 border-b border-neutral-200 mb-6">
                     <div>
                         <h1 class="text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">
-                            <?php esc_html_e('Carrito de compras', 'tech-store'); ?>
+                            <?php esc_html_e('Carrito de compras', 'alex-store'); ?>
                         </h1>
                         <p class="text-xs text-neutral-400 mt-0.5">
-                            <?php printf(esc_html__('%d productos en tu lista', 'tech-store'), absint($cart_count)); ?>
+                            <?php printf(esc_html__('%d productos en tu lista', 'alex-store'), absint($cart_count)); ?>
                         </p>
                     </div>
                     <div class="hidden sm:block text-xs font-semibold text-neutral-400 uppercase tracking-wider">
-                        <?php esc_html_e('Precio', 'tech-store'); ?>
+                        <?php esc_html_e('Precio', 'alex-store'); ?>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
                             if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) {
                                 $product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
                                 $raw_name          = $_product->get_name();
-                                $product_name      = function_exists('tech_store_capitalize_text') ? tech_store_capitalize_text($raw_name) : ucwords(strtolower($raw_name));
+                                $product_name      = function_exists('alex_store_capitalize_text') ? alex_store_capitalize_text($raw_name) : ucwords(strtolower($raw_name));
                                 $thumbnail         = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image('tech-product-card', ['class' => 'w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-2xl bg-neutral-50 p-2 border border-neutral-200', 'alt' => esc_attr($product_name)]), $cart_item, $cart_item_key);
                                 $product_price     = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
                                 $product_subtotal  = apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key);
@@ -83,11 +83,11 @@ $cart_count = WC()->cart->get_cart_contents_count();
                                                 <?php if ($is_in_stock) : ?>
                                                     <span class="text-emerald-700 flex items-center gap-1">
                                                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                                        <?php esc_html_e('En stock - Listo para envío', 'tech-store'); ?>
+                                                        <?php esc_html_e('En stock - Listo para envío', 'alex-store'); ?>
                                                     </span>
                                                 <?php else : ?>
                                                     <span class="text-rose-600">
-                                                        <?php esc_html_e('Agotado', 'tech-store'); ?>
+                                                        <?php esc_html_e('Agotado', 'alex-store'); ?>
                                                     </span>
                                                 <?php endif; ?>
                                             </div>
@@ -97,7 +97,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
 
                                             <!-- Free Shipping Eligible Badge -->
                                             <div class="text-[11px] text-neutral-500 font-medium pt-0.5">
-                                                <?php esc_html_e('Aplica para Envío Gratis y Retiro en Sucursal', 'tech-store'); ?>
+                                                <?php esc_html_e('Aplica para Envío Gratis y Retiro en Sucursal', 'alex-store'); ?>
                                             </div>
 
                                             <!-- Amazon Style Controls: Quantity Dropdown + Delete Link -->
@@ -106,7 +106,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
                                                 <!-- Quantity Select or Input -->
                                                 <div class="flex items-center bg-neutral-100 border border-neutral-300 rounded-xl px-2.5 py-1 gap-2 shadow-sm">
                                                     <label for="quantity_<?php echo esc_attr($cart_item_key); ?>" class="font-bold text-neutral-700 text-[11px]">
-                                                        <?php esc_html_e('Cant:', 'tech-store'); ?>
+                                                        <?php esc_html_e('Cant:', 'alex-store'); ?>
                                                     </label>
                                                     <input 
                                                         type="number" 
@@ -128,11 +128,11 @@ $cart_count = WC()->cart->get_cart_contents_count();
                                                     sprintf(
                                                         '<a href="%s" class="text-neutral-500 hover:text-rose-600 font-semibold transition-colors inline-flex items-center gap-1" aria-label="%s" data-product_id="%s" data-product_sku="%s">%s %s</a>',
                                                         esc_url(wc_get_cart_remove_url($cart_item_key)),
-                                                        esc_attr(sprintf(__('Eliminar %s', 'tech-store'), wp_strip_all_tags($product_name))),
+                                                        esc_attr(sprintf(__('Eliminar %s', 'alex-store'), wp_strip_all_tags($product_name))),
                                                         esc_attr($product_id),
                                                         esc_attr($_product->get_sku()),
-                                                        tech_store_svg_icon('trash', 'w-3.5 h-3.5'),
-                                                        esc_html__('Eliminar', 'tech-store')
+                                                        alex_store_svg_icon('trash', 'w-3.5 h-3.5'),
+                                                        esc_html__('Eliminar', 'alex-store')
                                                     ),
                                                     $cart_item_key
                                                 );
@@ -143,7 +143,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
 
                                     <!-- Price (Right Aligned on desktop) -->
                                     <div class="sm:text-right w-full sm:w-auto flex sm:flex-col items-baseline justify-between sm:justify-start">
-                                        <span class="sm:hidden text-xs text-neutral-500 font-medium"><?php esc_html_e('Precio total:', 'tech-store'); ?></span>
+                                        <span class="sm:hidden text-xs text-neutral-500 font-medium"><?php esc_html_e('Precio total:', 'alex-store'); ?></span>
                                         <span class="text-base sm:text-lg font-extrabold text-neutral-900">
                                             <?php echo wp_kses_post($product_subtotal); ?>
                                         </span>
@@ -159,10 +159,10 @@ $cart_count = WC()->cart->get_cart_contents_count();
                     <!-- Action Bar -->
                     <div class="pt-4 flex justify-between items-center border-t border-neutral-200 mt-4">
                         <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="text-xs font-bold text-neutral-700 hover:text-cta flex items-center gap-1 transition-colors">
-                            &larr; <?php esc_html_e('Continuar comprando', 'tech-store'); ?>
+                            &larr; <?php esc_html_e('Continuar comprando', 'alex-store'); ?>
                         </a>
-                        <button type="submit" class="button ubx-btn-outline text-xs" name="update_cart" value="<?php esc_attr_e('Actualizar carrito', 'tech-store'); ?>">
-                            <?php esc_html_e('Actualizar carrito', 'tech-store'); ?>
+                        <button type="submit" class="button ubx-btn-outline text-xs" name="update_cart" value="<?php esc_attr_e('Actualizar carrito', 'alex-store'); ?>">
+                            <?php esc_html_e('Actualizar carrito', 'alex-store'); ?>
                         </button>
                         <?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
                     </div>
@@ -173,7 +173,7 @@ $cart_count = WC()->cart->get_cart_contents_count();
                 <!-- Subtotal summary at the bottom of the list -->
                 <div class="pt-6 border-t border-neutral-200 text-right">
                     <p class="text-sm sm:text-base text-neutral-700">
-                        <?php printf(esc_html__('Subtotal (%d productos):', 'tech-store'), absint($cart_count)); ?>
+                        <?php printf(esc_html__('Subtotal (%d productos):', 'alex-store'), absint($cart_count)); ?>
                         <span class="text-xl sm:text-2xl font-black text-neutral-900 ml-1">
                             <?php wc_cart_totals_subtotal_html(); ?>
                         </span>

@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * Handle AJAX Live Search
  */
 function alex_store_ajax_search() {
-    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('tech_store_nonce', 'nonce', false)) {
+    if (!check_ajax_referer('alex_store_nonce', 'nonce', false) && !check_ajax_referer('alex_store_nonce', 'nonce', false)) {
         wp_send_json_error(['message' => __('Sesión expirada', 'alex-store')]);
     }
 
@@ -69,4 +69,7 @@ add_action('wp_ajax_alex_store_ajax_search', 'alex_store_ajax_search');
 add_action('wp_ajax_nopriv_alex_store_ajax_search', 'alex_store_ajax_search');
 add_action('wp_ajax_tech_store_ajax_search', 'alex_store_ajax_search');
 add_action('wp_ajax_nopriv_tech_store_ajax_search', 'alex_store_ajax_search');
-function tech_store_ajax_search() { alex_store_ajax_search(); }
+
+if (!function_exists('tech_store_ajax_search')) {
+    function tech_store_ajax_search() { alex_store_ajax_search(); }
+}

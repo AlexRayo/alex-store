@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * The Template for displaying product archives (Full Width Grid without Aside)
  *
@@ -21,7 +21,7 @@ if ($shop_cols === '3') {
 }
 ?>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<div class="site-container py-6">
     
     <!-- Breadcrumbs -->
     <?php woocommerce_breadcrumb(); ?>
@@ -64,7 +64,7 @@ if ($shop_cols === '3') {
                 while (have_posts()) : the_post();
                     do_action('woocommerce_shop_loop');
                     global $product;
-                    echo tech_store_product_card($product);
+                    echo alex_store_product_card($product);
                 endwhile;
                 ?>
             </ul>
@@ -79,16 +79,16 @@ if ($shop_cols === '3') {
         <?php else : ?>
             <div class="bg-white rounded-3xl border border-neutral-200 p-12 text-center shadow-subtle">
                 <div class="w-16 h-16 bg-neutral-100 text-neutral-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <?php echo tech_store_svg_icon('search', 'w-8 h-8'); ?>
+                    <?php echo alex_store_svg_icon('search', 'w-8 h-8'); ?>
                 </div>
                 <h2 class="text-lg font-bold text-neutral-900 mb-2">
-                    <?php esc_html_e('No se encontraron productos', 'tech-store'); ?>
+                    <?php esc_html_e('No se encontraron productos', 'alex-store'); ?>
                 </h2>
                 <p class="text-xs text-neutral-500 mb-6 max-w-sm mx-auto">
-                    <?php esc_html_e('No hay productos que coincidan con los criterios seleccionados.', 'tech-store'); ?>
+                    <?php esc_html_e('No hay productos que coincidan con los criterios seleccionados.', 'alex-store'); ?>
                 </p>
                 <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="ubx-btn-primary">
-                    <?php esc_html_e('Ver todo el catálogo', 'tech-store'); ?>
+                    <?php esc_html_e('Ver todo el catálogo', 'alex-store'); ?>
                 </a>
             </div>
         <?php endif; ?>

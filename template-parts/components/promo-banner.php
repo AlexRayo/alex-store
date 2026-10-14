@@ -26,7 +26,8 @@ if ($location === 'shop' && !$is_shop_page) {
 }
 
 $banner_img   = get_theme_mod('alex_promo_banner_image', get_theme_mod('tech_promo_banner_image', ''));
-$badge        = get_theme_mod('alex_promo_banner_badge', get_theme_mod('tech_promo_banner_badge', __('🔥 Promoción Especial por Tiempo Limitado', 'alex-store')));
+$badge        = get_theme_mod('alex_promo_banner_badge', get_theme_mod('tech_promo_banner_badge', __('Promoción Especial por Tiempo Limitado', 'alex-store')));
+$badge_clean  = preg_replace('/[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]/u', '', $badge);
 $title        = get_theme_mod('alex_promo_banner_title', get_theme_mod('tech_promo_banner_title', __('Hasta 40% OFF en Celulares & Gaming', 'alex-store')));
 $subtitle     = get_theme_mod('alex_promo_banner_subtitle', get_theme_mod('tech_promo_banner_subtitle', __('Aprovecha descuentos únicos con entrega rápida en todo el país y financiamiento Credex sin intereses.', 'alex-store')));
 $btn_text     = get_theme_mod('alex_promo_banner_btn_text', get_theme_mod('tech_promo_banner_btn_text', __('Ver Ofertas Especiales', 'alex-store')));
@@ -36,11 +37,12 @@ if (empty($btn_link)) {
 }
 ?>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-6">
+<div class="site-container my-6">
     <div class="relative bg-primary text-white rounded-3xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-card border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
         
         <?php if (!empty($banner_img)) : ?>
-            <img src="<?php echo esc_url($banner_img); ?>" alt="<?php echo esc_attr($title); ?>" class="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none" />
+            <img src="<?php echo esc_url($banner_img); ?>" alt="<?php echo esc_attr($title); ?>" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0" />
+            <div class="absolute inset-0 bg-gradient-to-r from-black/75 to-black/50 pointer-events-none z-[1]" aria-hidden="true"></div>
         <?php else : ?>
             <!-- Ambient blurred lighting -->
             <div class="absolute -right-16 -top-16 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -48,9 +50,10 @@ if (empty($btn_link)) {
         <?php endif; ?>
 
         <div class="relative z-10 max-w-2xl text-center md:text-left">
-            <?php if (!empty($badge)) : ?>
+            <?php if (!empty($badge_clean)) : ?>
                 <span class="inline-flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white text-xs font-semibold uppercase px-3 py-1 rounded-full mb-3 border border-white/20">
-                    <?php echo esc_html($badge); ?>
+                    <?php echo alex_store_svg_icon('flame', 'w-3.5 h-3.5 text-amber-400'); ?>
+                    <span><?php echo esc_html(trim($badge_clean)); ?></span>
                 </span>
             <?php endif; ?>
 

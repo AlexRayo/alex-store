@@ -56,86 +56,334 @@ if (class_exists('WooCommerce')) {
     }
 }
 
-// Customizer Theme Mods
-$hero_badge    = get_theme_mod('alex_hero_badge', get_theme_mod('tech_hero_badge', __('⚡ 3 Meses 0% Interés con Credex', 'alex-store')));
-$hero_title    = get_theme_mod('alex_hero_title', get_theme_mod('tech_hero_title', __('Tecnología de última generación a tu alcance.', 'alex-store')));
-$hero_subtitle = get_theme_mod('alex_hero_subtitle', get_theme_mod('tech_hero_subtitle', __('Encuentra los últimos modelos en celulares, computadoras, gaming, audio y seguridad con respaldo oficial.', 'alex-store')));
-$whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whatsapp_number', '50557935010'));
+// Customizer Theme Mods - Hero Slider & Side Banners
+$whatsapp_num = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whatsapp_number', '50557935010'));
+$default_wa   = 'https://wa.me/' . preg_replace('/[^0-9]/', '', $whatsapp_num);
+$shop_url     = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop');
+
+// Helper to clean legacy emojis
+$alex_clean_txt = function($txt) {
+    return trim(preg_replace('/[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}]/u', '', (string)$txt));
+};
+
+// Slide 1
+$s1_badge     = $alex_clean_txt(get_theme_mod('alex_slide1_badge', get_theme_mod('alex_hero_badge', get_theme_mod('tech_hero_badge', __('3 Meses 0% Interés con Credex', 'alex-store')))));
+$s1_title     = get_theme_mod('alex_slide1_title', get_theme_mod('alex_hero_title', get_theme_mod('tech_hero_title', __('Tecnología de última generación a tu alcance.', 'alex-store'))));
+$s1_subtitle  = get_theme_mod('alex_slide1_subtitle', get_theme_mod('alex_hero_subtitle', get_theme_mod('tech_hero_subtitle', __('Encuentra los últimos modelos en celulares, computadoras, gaming, audio y seguridad con respaldo oficial.', 'alex-store'))));
+$s1_pills_raw = $alex_clean_txt(get_theme_mod('alex_slide1_pills', 'Pantallas OLED 120Hz, Garantía Oficial 1 Año, Envíos Rápidos'));
+$s1_pills     = array_filter(array_map('trim', explode(',', $s1_pills_raw)));
+$s1_btn1_text = get_theme_mod('alex_slide1_btn1_text', __('Ver Catálogo Completo', 'alex-store'));
+$s1_btn1_url  = get_theme_mod('alex_slide1_btn1_url', '');
+if (empty($s1_btn1_url)) $s1_btn1_url = $shop_url;
+$s1_btn2_text = get_theme_mod('alex_slide1_btn2_text', __('Explorar Celulares', 'alex-store'));
+$s1_btn2_url  = get_theme_mod('alex_slide1_btn2_url', '');
+if (empty($s1_btn2_url)) $s1_btn2_url = $shop_url;
+$s1_bg_image  = get_theme_mod('alex_slide1_bg_image', '');
+
+// Slide 2
+$s2_badge     = $alex_clean_txt(get_theme_mod('alex_slide2_badge', __('ALTO RENDIMIENTO & GAMING', 'alex-store')));
+$s2_title     = get_theme_mod('alex_slide2_title', __('Laptops Pro & Setups Gaming de Élite', 'alex-store'));
+$s2_subtitle  = get_theme_mod('alex_slide2_subtitle', __('Potencia sin límites para programadores, creadores y gamers. Laptops con GPU RTX serie 40, procesadores M3 y monitores de alta frecuencia.', 'alex-store'));
+$s2_pills_raw = $alex_clean_txt(get_theme_mod('alex_slide2_pills', 'RTX Serie 40 Ready, 32GB RAM DDR5, Monitores 240Hz'));
+$s2_pills     = array_filter(array_map('trim', explode(',', $s2_pills_raw)));
+$s2_btn1_text = get_theme_mod('alex_slide2_btn1_text', __('Explorar Gaming & PC', 'alex-store'));
+$s2_btn1_url  = get_theme_mod('alex_slide2_btn1_url', '');
+if (empty($s2_btn1_url)) $s2_btn1_url = $shop_url;
+$s2_btn2_text = get_theme_mod('alex_slide2_btn2_text', __('Ver Laptops', 'alex-store'));
+$s2_btn2_url  = get_theme_mod('alex_slide2_btn2_url', '');
+if (empty($s2_btn2_url)) $s2_btn2_url = $shop_url;
+$s2_bg_image  = get_theme_mod('alex_slide2_bg_image', '');
+
+// Slide 3
+$s3_badge     = $alex_clean_txt(get_theme_mod('alex_slide3_badge', __('FINANCIAMIENTO 0% INTERÉS', 'alex-store')));
+$s3_title     = get_theme_mod('alex_slide3_title', __('Sonido Inmersivo & Facilidades con Credex', 'alex-store'));
+$s3_subtitle  = get_theme_mod('alex_slide3_subtitle', __('Audífonos con cancelación de ruido activa, asistentes de voz Alexa y seguridad para tu hogar. Llévatelo hoy hasta en 3 meses al 0%.', 'alex-store'));
+$s3_pills_raw = $alex_clean_txt(get_theme_mod('alex_slide3_pills', 'Cancelación Activa ANC, 3 Meses 0% con Credex, Smart Living'));
+$s3_pills     = array_filter(array_map('trim', explode(',', $s3_pills_raw)));
+$s3_btn1_text = get_theme_mod('alex_slide3_btn1_text', __('Solicitar Cuotas por WhatsApp', 'alex-store'));
+$s3_btn1_url  = get_theme_mod('alex_slide3_btn1_url', '');
+if (empty($s3_btn1_url)) $s3_btn1_url = $default_wa;
+$s3_btn2_text = get_theme_mod('alex_slide3_btn2_text', __('Ver Colección de Audio', 'alex-store'));
+$s3_btn2_url  = get_theme_mod('alex_slide3_btn2_url', '');
+if (empty($s3_btn2_url)) $s3_btn2_url = $shop_url;
+$s3_bg_image  = get_theme_mod('alex_slide3_bg_image', '');
+
+// Side Mini Banners
+$side1_badge  = get_theme_mod('alex_side1_badge', __('Sonido & Smart Living', 'alex-store'));
+$side1_title  = get_theme_mod('alex_side1_title', __('Asistentes de Voz & Audio', 'alex-store'));
+$side1_desc   = get_theme_mod('alex_side1_desc', __('Amazon Alexa, audífonos con cancelación de ruido y parlantes inteligentes.', 'alex-store'));
+$side1_link   = get_theme_mod('alex_side1_link', '');
+if (empty($side1_link)) $side1_link = $shop_url;
+
+$side2_badge  = get_theme_mod('alex_side2_badge', __('Facilidades de Pago', 'alex-store'));
+$side2_title  = get_theme_mod('alex_side2_title', __('Compra en Cuotas sin Intereses', 'alex-store'));
+$side2_desc   = get_theme_mod('alex_side2_desc', __('Aplica con Credex y tarjetas bancarias en minutos con entrega inmediata.', 'alex-store'));
+$side2_link   = get_theme_mod('alex_side2_link', '');
+if (empty($side2_link)) $side2_link = $default_wa;
 ?>
 
 <main id="primary" class="site-main">
     
-    <!-- 1. HERO TECH SHOWCASE (Dynamic Primary Color Section) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- 1. HERO TECH SHOWCASE (shadcn/ui Inspired Slider Carousel) -->
+    <section class="site-container py-6">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <!-- Main Big Banner (2 cols) -> Uses bg-primary dynamically -->
-            <div class="lg:col-span-2 relative bg-primary rounded-3xl p-6 sm:p-12 text-white overflow-hidden flex flex-col justify-between min-h-[420px] shadow-card border border-white/10 group">
-                <div class="absolute -right-24 -top-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700"></div>
-                <div class="absolute left-1/3 -bottom-24 w-80 h-80 bg-black/20 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- Main Tech Slider (2 cols) -> shadcn Carousel Architecture -->
+            <div class="lg:col-span-2 relative tech-slider-wrapper shadow-card border border-neutral-200/80 bg-neutral-950 text-white min-h-[460px] md:min-h-[500px] flex flex-col justify-between" data-tech-slider aria-roledescription="carousel" aria-label="<?php esc_attr_e('Destacados Tecnológicos', 'alex-store'); ?>">
+                
+                <!-- Track / Slides Container -->
+                <div class="tech-slider-track h-full">
+                    
+                    <!-- SLIDE 1: Flagship Tech / Smartphones & Ecosystem -->
+                    <div class="tech-slider-slide relative bg-gradient-to-br from-primary via-primary-dark to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                        <?php if (!empty($s1_bg_image)) : ?>
+                            <img src="<?php echo esc_url($s1_bg_image); ?>" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/75 to-black/50 pointer-events-none z-[1]" aria-hidden="true"></div>
+                        <?php else : ?>
+                            <div class="absolute -right-20 -top-20 w-96 h-96 bg-cta/20 rounded-full blur-3xl pointer-events-none"></div>
+                            <div class="absolute right-1/4 -bottom-20 w-80 h-80 bg-primary-light/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <?php endif; ?>
 
-                <div class="relative z-10 max-w-lg">
-                    <?php if ($hero_badge) : ?>
-                        <span class="inline-flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white text-xs font-semibold uppercase px-3 py-1 rounded-full mb-4 border border-white/20">
-                            <?php echo esc_html($hero_badge); ?>
-                        </span>
-                    <?php endif; ?>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.15] tracking-tight mb-4">
-                        <?php echo esc_html($hero_title); ?>
-                    </h1>
-                    <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed">
-                        <?php echo esc_html($hero_subtitle); ?>
-                    </p>
+                        <div class="relative z-10 max-w-xl">
+                            <?php if (!empty($s1_badge)) : ?>
+                                <span class="shadcn-badge bg-white/10 text-white border-white/20 backdrop-blur-md mb-4 shadow-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <?php echo esc_html($s1_badge); ?>
+                                </span>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s1_title)) : ?>
+                                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    <?php echo esc_html($s1_title); ?>
+                                </h1>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s1_subtitle)) : ?>
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    <?php echo esc_html($s1_subtitle); ?>
+                                </p>
+                            <?php endif; ?>
+
+                            <!-- Tech Telemetry Pills -->
+                            <?php if (!empty($s1_pills)) : ?>
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <?php foreach ($s1_pills as $pill) : ?>
+                                        <span class="text-[11px] font-semibold text-white/90 bg-white/10 px-2.5 py-1 rounded-md border border-white/15 backdrop-blur-sm">
+                                            <?php echo esc_html($pill); ?>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                            <?php if (!empty($s1_btn1_text)) : ?>
+                                <a href="<?php echo esc_url($s1_btn1_url); ?>" class="shadcn-btn bg-white hover:bg-neutral-100 text-neutral-950 font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2">
+                                    <?php echo esc_html($s1_btn1_text); ?>
+                                    <?php echo alex_store_svg_icon('arrow-right', 'w-4 h-4'); ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s1_btn2_text)) : ?>
+                                <a href="<?php echo esc_url($s1_btn2_url); ?>" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    <?php echo esc_html($s1_btn2_text); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2: Gaming & Workstations (Pro Performance) -->
+                    <div class="tech-slider-slide relative bg-gradient-to-br from-neutral-900 via-[#0c1222] to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                        <?php if (!empty($s2_bg_image)) : ?>
+                            <img src="<?php echo esc_url($s2_bg_image); ?>" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/75 to-black/50 pointer-events-none z-[1]" aria-hidden="true"></div>
+                        <?php else : ?>
+                            <div class="absolute -right-20 -top-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                            <div class="absolute left-1/3 -bottom-24 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                        <?php endif; ?>
+
+                        <div class="relative z-10 max-w-xl">
+                            <?php if (!empty($s2_badge)) : ?>
+                                <span class="shadcn-badge bg-blue-500/20 text-blue-200 border-blue-400/30 backdrop-blur-md mb-4 shadow-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                                    <?php echo esc_html($s2_badge); ?>
+                                </span>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s2_title)) : ?>
+                                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    <?php echo esc_html($s2_title); ?>
+                                </h2>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s2_subtitle)) : ?>
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    <?php echo esc_html($s2_subtitle); ?>
+                                </p>
+                            <?php endif; ?>
+
+                            <!-- Tech Telemetry Pills -->
+                            <?php if (!empty($s2_pills)) : ?>
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <?php foreach ($s2_pills as $pill) : ?>
+                                        <span class="text-[11px] font-semibold text-blue-200 bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-800/60 backdrop-blur-sm">
+                                            <?php echo esc_html($pill); ?>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                            <?php if (!empty($s2_btn1_text)) : ?>
+                                <a href="<?php echo esc_url($s2_btn1_url); ?>" class="shadcn-btn-primary px-6 py-2.5 text-sm font-bold">
+                                    <?php echo esc_html($s2_btn1_text); ?>
+                                    <?php echo alex_store_svg_icon('arrow-right', 'w-4 h-4'); ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s2_btn2_text)) : ?>
+                                <a href="<?php echo esc_url($s2_btn2_url); ?>" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    <?php echo esc_html($s2_btn2_text); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3: Audio Hi-Fi, Smart Home & Cuotas Credex -->
+                    <div class="tech-slider-slide relative bg-gradient-to-br from-[#111827] via-[#1e1b4b] to-neutral-950 p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden">
+                        <?php if (!empty($s3_bg_image)) : ?>
+                            <img src="<?php echo esc_url($s3_bg_image); ?>" alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0" />
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/75 to-black/50 pointer-events-none z-[1]" aria-hidden="true"></div>
+                        <?php else : ?>
+                            <div class="absolute -right-24 -top-24 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                            <div class="absolute left-1/4 -bottom-24 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <?php endif; ?>
+
+                        <div class="relative z-10 max-w-xl">
+                            <?php if (!empty($s3_badge)) : ?>
+                                <span class="shadcn-badge bg-emerald-500/20 text-emerald-200 border-emerald-400/30 backdrop-blur-md mb-4 shadow-sm">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                    <?php echo esc_html($s3_badge); ?>
+                                </span>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s3_title)) : ?>
+                                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-[1.12] tracking-tight mb-4">
+                                    <?php echo esc_html($s3_title); ?>
+                                </h2>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s3_subtitle)) : ?>
+                                <p class="text-sm sm:text-base text-white/80 mb-6 font-normal leading-relaxed max-w-lg">
+                                    <?php echo esc_html($s3_subtitle); ?>
+                                </p>
+                            <?php endif; ?>
+
+                            <!-- Tech Telemetry Pills -->
+                            <?php if (!empty($s3_pills)) : ?>
+                                <div class="flex flex-wrap items-center gap-2 mb-6">
+                                    <?php foreach ($s3_pills as $pill) : ?>
+                                        <span class="text-[11px] font-semibold text-emerald-200 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-800/60 backdrop-blur-sm">
+                                            <?php echo esc_html($pill); ?>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="relative z-10 flex items-center gap-3 flex-wrap">
+                            <?php if (!empty($s3_btn1_text)) : ?>
+                                <a href="<?php echo esc_url($s3_btn1_url); ?>" <?php echo strpos($s3_btn1_url, 'wa.me') !== false ? 'target="_blank"' : ''; ?> class="shadcn-btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2">
+                                    <?php if (strpos($s3_btn1_url, 'wa.me') !== false) : ?>
+                                        <?php echo alex_store_svg_icon('whatsapp', 'w-4 h-4'); ?>
+                                    <?php endif; ?>
+                                    <?php echo esc_html($s3_btn1_text); ?>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if (!empty($s3_btn2_text)) : ?>
+                                <a href="<?php echo esc_url($s3_btn2_url); ?>" class="shadcn-btn-dark-glass text-xs font-semibold px-4 py-2.5">
+                                    <?php echo esc_html($s3_btn2_text); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="relative z-10 flex items-center gap-3 flex-wrap">
-                    <a href="<?php echo function_exists('wc_get_page_permalink') ? esc_url(wc_get_page_permalink('shop')) : esc_url(home_url('/shop')); ?>" class="bg-white hover:bg-neutral-100 text-neutral-950 font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-sm flex items-center gap-2">
-                        <?php esc_html_e('Ver Catálogo Completo', 'alex-store'); ?>
-                        <?php echo alex_store_svg_icon('arrow-right', 'w-4 h-4'); ?>
-                    </a>
-                    <span class="text-xs text-white/70 font-medium px-3 py-2 rounded-xl border border-white/15 backdrop-blur-sm">
-                        🛡️ <?php esc_html_e('Garantía y Asistencia Técnica', 'alex-store'); ?>
-                    </span>
+                <!-- Floating Navigation Arrows (shadcn Carousel style) -->
+                <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+                    <button type="button" class="tech-slider-prev tech-slider-arrow" aria-label="<?php esc_attr_e('Anterior slide', 'alex-store'); ?>">
+                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" class="tech-slider-next tech-slider-arrow" aria-label="<?php esc_attr_e('Siguiente slide', 'alex-store'); ?>">
+                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
                 </div>
+
+                <!-- Bottom Progress Indicators (Pills) -->
+                <div class="tech-slider-dots absolute bottom-5 right-6 z-20 flex items-center gap-2" role="tablist" aria-label="<?php esc_attr_e('Diapositivas', 'alex-store'); ?>">
+                    <button type="button" class="tech-slider-dot active" role="tab" aria-label="<?php esc_attr_e('Slide 1', 'alex-store'); ?>" aria-current="true"></button>
+                    <button type="button" class="tech-slider-dot" role="tab" aria-label="<?php esc_attr_e('Slide 2', 'alex-store'); ?>"></button>
+                    <button type="button" class="tech-slider-dot" role="tab" aria-label="<?php esc_attr_e('Slide 3', 'alex-store'); ?>"></button>
+                </div>
+
             </div>
 
             <!-- Side Dual Banners (1 col) -->
             <div class="flex flex-col gap-6">
                 <!-- Top Mini Banner: Smart Assistants / Audio (bg-primary-dark) -->
-                <div class="flex-1 bg-primary-dark text-white rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between border border-white/10 shadow-sm group">
+                <div class="flex-1 bg-primary-dark text-white rounded-3xl p-6 sm:p-7 relative overflow-hidden flex flex-col justify-between border border-white/10 shadow-sm group hover:border-white/20 transition-all">
                     <div class="relative z-10">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-1 block">
-                            <?php esc_html_e('Hogar Inteligente & Sonido', 'alex-store'); ?>
-                        </span>
-                        <h3 class="text-lg font-bold text-white leading-snug mb-1.5">
-                            <?php esc_html_e('Asistentes de Voz & Audio', 'alex-store'); ?>
-                        </h3>
-                        <p class="text-xs text-white/70">
-                            <?php esc_html_e('Amazon Alexa, audífonos con cancelación de ruido y parlantes.', 'alex-store'); ?>
-                        </p>
+                        <?php if (!empty($side1_badge)) : ?>
+                            <span class="shadcn-badge bg-white/10 text-white/90 border-white/20 text-[10px] mb-2">
+                                <?php echo esc_html($side1_badge); ?>
+                            </span>
+                        <?php endif; ?>
+
+                        <?php if (!empty($side1_title)) : ?>
+                            <h3 class="text-lg font-bold text-white leading-snug mb-1.5">
+                                <?php echo esc_html($side1_title); ?>
+                            </h3>
+                        <?php endif; ?>
+
+                        <?php if (!empty($side1_desc)) : ?>
+                            <p class="text-xs text-white/70 leading-relaxed">
+                                <?php echo esc_html($side1_desc); ?>
+                            </p>
+                        <?php endif; ?>
                     </div>
                     <div class="relative z-10 mt-4">
-                        <a href="<?php echo esc_url(home_url('/shop')); ?>" class="inline-flex items-center gap-1 text-xs font-bold text-white hover:underline">
+                        <a href="<?php echo esc_url($side1_link); ?>" class="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-white/80 group-hover:translate-x-1 transition-all">
                             <?php esc_html_e('Explorar categoría', 'alex-store'); ?> &rarr;
                         </a>
                     </div>
                 </div>
 
                 <!-- Bottom Mini Banner: Financing / Credex -->
-                <div class="flex-1 bg-neutral-100 text-neutral-900 rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between border border-neutral-200 shadow-sm group">
+                <div class="flex-1 bg-neutral-100 text-neutral-900 rounded-3xl p-6 sm:p-7 relative overflow-hidden flex flex-col justify-between border border-neutral-200/80 shadow-sm group hover:border-neutral-300 transition-all">
                     <div class="relative z-10">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1 block">
-                            <?php esc_html_e('Facilidades de Pago', 'alex-store'); ?>
-                        </span>
-                        <h3 class="text-lg font-bold text-neutral-900 leading-snug mb-1.5">
-                            <?php esc_html_e('Compra en Cuotas sin Intereses', 'alex-store'); ?>
-                        </h3>
-                        <p class="text-xs text-neutral-600 font-normal">
-                            <?php esc_html_e('Aplica con Credex y tarjetas bancarias en minutos.', 'alex-store'); ?>
-                        </p>
+                        <?php if (!empty($side2_badge)) : ?>
+                            <span class="shadcn-badge bg-neutral-200 text-neutral-800 border-neutral-300 text-[10px] mb-2">
+                                <?php echo esc_html($side2_badge); ?>
+                            </span>
+                        <?php endif; ?>
+
+                        <?php if (!empty($side2_title)) : ?>
+                            <h3 class="text-lg font-bold text-neutral-900 leading-snug mb-1.5">
+                                <?php echo esc_html($side2_title); ?>
+                            </h3>
+                        <?php endif; ?>
+
+                        <?php if (!empty($side2_desc)) : ?>
+                            <p class="text-xs text-neutral-600 leading-relaxed font-normal">
+                                <?php echo esc_html($side2_desc); ?>
+                            </p>
+                        <?php endif; ?>
                     </div>
                     <div class="relative z-10 mt-4">
-                        <a href="https://wa.me/<?php echo esc_attr(preg_replace('/[^0-9]/', '', $whatsapp_num)); ?>" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-neutral-900 hover:underline">
+                        <a href="<?php echo esc_url($side2_link); ?>" <?php echo strpos($side2_link, 'wa.me') !== false ? 'target="_blank"' : ''; ?> class="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-900 hover:text-cta group-hover:translate-x-1 transition-all">
                             <?php esc_html_e('Consultar por WhatsApp', 'alex-store'); ?> &rarr;
                         </a>
                     </div>
@@ -149,7 +397,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
     <?php get_template_part('template-parts/components/promo-banner'); ?>
 
     <!-- 3. POPULAR CATEGORIES GRID (Neutral Minimalist Cards) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="site-container py-8">
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
@@ -173,7 +421,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
                 ?>
                     <a 
                         href="<?php echo esc_url(get_term_link($cat)); ?>" 
-                        class="group bg-white p-4 rounded-2xl border border-neutral-200 shadow-subtle hover:shadow-card hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2"
+                        class="group bg-white p-4 rounded-2xl border border-neutral-200/80 shadow-subtle hover:shadow-card hover:border-primary transition-all text-center flex flex-col items-center justify-center gap-2"
                     >
                         <div class="w-14 h-14 rounded-xl bg-neutral-100 group-hover:bg-neutral-200 flex items-center justify-center transition-colors overflow-hidden p-2">
                             <?php if ($cat_img) : ?>
@@ -213,7 +461,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
     </section>
 
     <!-- 4. FEATURED PRODUCTS (Clean Grid) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="site-container py-8">
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h2 class="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
@@ -223,7 +471,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
                     <?php esc_html_e('Productos seleccionados con disponibilidad inmediata', 'alex-store'); ?>
                 </p>
             </div>
-            <a href="<?php echo function_exists('wc_get_page_permalink') ? esc_url(wc_get_page_permalink('shop')) : esc_url(home_url('/shop')); ?>" class="ubx-btn-outline text-xs">
+            <a href="<?php echo function_exists('wc_get_page_permalink') ? esc_url(wc_get_page_permalink('shop')) : esc_url(home_url('/shop')); ?>" class="shadcn-btn-outline text-xs">
                 <?php esc_html_e('Ver Todos', 'alex-store'); ?>
             </a>
         </div>
@@ -242,7 +490,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
     </section>
 
     <!-- 5. DUAL PROMO TECH BANNERS (Dynamic Primary Color) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <section class="site-container py-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Promo 1: Gaming / PC (bg-primary) -->
             <div class="bg-primary text-white rounded-3xl p-8 relative overflow-hidden flex flex-col justify-between border border-white/10 shadow-subtle min-h-[220px]">
@@ -283,7 +531,7 @@ $whatsapp_num  = get_theme_mod('alex_whatsapp_number', get_theme_mod('tech_whats
     </section>
 
     <!-- 6. HOW IT WORKS / COMPRA EN CUOTAS SECTION -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <section class="site-container py-10">
         <div class="bg-white rounded-3xl border border-neutral-200 p-6 sm:p-10 shadow-subtle">
             <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1 block">

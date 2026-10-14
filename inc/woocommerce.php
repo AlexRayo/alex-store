@@ -23,7 +23,7 @@ add_action('woocommerce_before_main_content', 'alex_store_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'alex_store_wrapper_end', 10);
 
 function alex_store_wrapper_start() {
-    echo '<main id="main" class="site-main max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">';
+    echo '<main id="main" class="site-main site-container py-8">';
 }
 
 function alex_store_wrapper_end() {
@@ -82,3 +82,16 @@ add_filter('woocommerce_output_related_products_args', 'alex_store_related_produ
  * Disable default WooCommerce CSS if we want 100% Tailwind control, or allow minimal core
  */
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+/**
+ * Ensure WooCommerce checkout privacy policy text is in Spanish
+ */
+function alex_store_privacy_policy_text_spanish($text, $type) {
+    if ($type === 'checkout') {
+        if (empty($text) || strpos($text, 'Your personal data') !== false) {
+            return __('Tus datos personales se utilizarán para procesar tu pedido, mejorar tu experiencia en este sitio web y para otros fines descritos en nuestra [privacy_policy].', 'alex-store');
+        }
+    }
+    return $text;
+}
+add_filter('woocommerce_get_privacy_policy_text', 'alex_store_privacy_policy_text_spanish', 20, 2);

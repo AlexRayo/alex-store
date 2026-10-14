@@ -1,8 +1,23 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --popover: #ffffff;
+    --popover-foreground: #09090b;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --ring: var(--color-primary, #0f172a);
+    --radius: 0.75rem;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -27,6 +42,69 @@
 }
 
 @layer components {
+  /* =========================================================
+     Global Site Container (Expansive 1440px / 1560px Layout)
+     ========================================================= */
+  .site-container {
+    @apply w-full max-w-[1440px] 2xl:max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10;
+  }
+
+  /* =========================================================
+     shadcn/ui Inspired Design System Components
+     ========================================================= */
+  .shadcn-card {
+    @apply bg-card text-card-foreground rounded-2xl border border-border/80 shadow-subtle transition-all duration-200 hover:shadow-card hover:border-neutral-300;
+  }
+
+  .shadcn-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .shadcn-badge-primary {
+    @apply bg-primary text-white border-transparent;
+  }
+
+  .shadcn-badge-outline {
+    @apply border-border bg-white text-neutral-800;
+  }
+
+  .shadcn-badge-secondary {
+    @apply bg-neutral-100 text-neutral-800 border-neutral-200;
+  }
+
+  .shadcn-badge-tech {
+    @apply bg-white/10 backdrop-blur-md text-white border-white/20 shadow-sm;
+  }
+
+  /* shadcn Button Variants */
+  .shadcn-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] h-10 px-4 py-2;
+  }
+
+  .shadcn-btn-default {
+    @apply shadcn-btn bg-neutral-900 text-white hover:bg-neutral-800 shadow-sm;
+  }
+
+  .shadcn-btn-primary {
+    @apply shadcn-btn bg-cta hover:bg-cta-hover text-white transition-colors;
+  }
+
+  .shadcn-btn-secondary {
+    @apply shadcn-btn bg-neutral-100 text-neutral-900 hover:bg-neutral-200 border border-neutral-200 shadow-sm;
+  }
+
+  .shadcn-btn-outline {
+    @apply shadcn-btn border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-900 hover:border-neutral-300 shadow-sm;
+  }
+
+  .shadcn-btn-ghost {
+    @apply shadcn-btn hover:bg-neutral-100 text-neutral-900;
+  }
+
+  .shadcn-btn-dark-glass {
+    @apply shadcn-btn bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md shadow-sm;
+  }
+
   /* Minimalist Luxury Product Card */
   .ubx-card {
     @apply bg-white border border-neutral-200/90 rounded-card shadow-subtle transition-all duration-300 hover:shadow-card-hover hover:border-neutral-400/80 hover:-translate-y-0.5 overflow-hidden flex flex-col justify-between;
@@ -38,7 +116,15 @@
 
   /* High Conversion Call to Action (CTA) Button */
   .ubx-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-white font-semibold px-5 py-2.5 rounded-xl shadow-cta hover:shadow-cta-hover transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm;
+    @apply inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-white font-semibold px-5 py-2.5 rounded-xl transition-colors duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm;
+  }
+
+  .product-card-price del {
+    @apply text-xs font-normal text-neutral-400 mr-1.5 no-underline line-through;
+  }
+
+  .product-card-price ins {
+    @apply no-underline text-neutral-900 font-bold;
   }
 
   /* Neutral Dark Secondary Button */
@@ -146,7 +232,7 @@ form.cart .quantity input.qty {
 }
 
 form.cart .single_add_to_cart_button {
-  @apply inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-white font-bold py-3 px-8 text-sm rounded-xl shadow-cta hover:shadow-cta-hover transition-all duration-200 active:scale-[0.98] w-full sm:w-auto;
+  @apply inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover text-white font-bold py-3 px-8 text-sm rounded-xl transition-colors duration-200 active:scale-[0.98] w-full sm:w-auto;
 }
 
 table.variations {
@@ -442,3 +528,92 @@ table.variations td.value select {
 .progress-bar-fill {
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* =========================================================
+   shadcn/ui Inspired Tech Hero Slider
+   ========================================================= */
+.tech-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.tech-slider-wrapper.is-dragging {
+  cursor: grabbing;
+}
+
+.tech-slider-wrapper.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.tech-slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.tech-slider-track.no-transition {
+  transition: none !important;
+}
+
+.tech-slider-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  position: relative;
+}
+
+.tech-slider-dot {
+  height: 6px;
+  width: 16px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.35);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.tech-slider-dot:hover {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.tech-slider-dot.active {
+  width: 38px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.tech-slider-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.tech-slider-arrow:hover {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.06);
+}
+
+.tech-slider-arrow:active {
+  transform: scale(0.94);
+}
+

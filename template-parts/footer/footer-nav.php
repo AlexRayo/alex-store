@@ -23,11 +23,11 @@ $phone_sec      = get_theme_mod('alex_phone_secondary', get_theme_mod('tech_phon
 $branch_1       = get_theme_mod('alex_branch_1', get_theme_mod('tech_branch_1', 'Esquina de los bancos 75 varas al este, Estelí, Nicaragua'));
 $branch_2       = get_theme_mod('alex_branch_2', get_theme_mod('tech_branch_2', 'Súper Las Segovias media cuadra al sur, Estelí, Nicaragua'));
 $branch_3       = get_theme_mod('alex_branch_3', get_theme_mod('tech_branch_3', 'Plaza Puntaldia, Managua, Nicaragua'));
-$store_hours    = get_theme_mod('alex_store_hours', get_theme_mod('tech_store_hours', "Lunes a Viernes: 8:00 AM ~ 6:00 PM\nSábados: 9:00 AM ~ 5:00 PM"));
+$store_hours    = get_theme_mod('alex_store_hours', get_theme_mod('alex_store_hours', "Lunes a Viernes: 8:00 AM ~ 6:00 PM\nSábados: 9:00 AM ~ 5:00 PM"));
 ?>
 
 <div class="bg-neutral-900 text-neutral-300 pt-12 pb-20 md:pb-12 border-t border-neutral-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="site-container">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
             
             <!-- Column 1: Brand & Description -->
@@ -52,7 +52,7 @@ $store_hours    = get_theme_mod('alex_store_hours', get_theme_mod('tech_store_ho
                         class="inline-flex items-center gap-2 bg-neutral-800 border border-neutral-700 text-white font-semibold px-3.5 py-2 rounded-xl text-xs hover:bg-neutral-700 transition-colors"
                     >
                         <?php echo alex_store_svg_icon('whatsapp', 'w-4 h-4 text-emerald-400'); ?>
-                        <span>WhatsApp: <?php echo esc_html($whatsapp_num); ?> / <?php echo esc_html($phone_sec); ?></span>
+                        <span>WhatsApp: <?php echo esc_html($whatsapp_num); ?></span>
                     </a>
                 </div>
             </div>

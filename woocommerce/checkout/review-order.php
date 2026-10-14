@@ -11,8 +11,8 @@ defined('ABSPATH') || exit;
 <table class="shop_table woocommerce-checkout-review-order-table w-full text-xs">
     <thead>
         <tr class="border-b border-neutral-200">
-            <th class="product-name py-2.5 text-left font-bold text-neutral-400 uppercase tracking-wider text-[11px]"><?php esc_html_e('Producto', 'tech-store'); ?></th>
-            <th class="product-total py-2.5 text-right font-bold text-neutral-400 uppercase tracking-wider text-[11px]"><?php esc_html_e('Subtotal', 'tech-store'); ?></th>
+            <th class="product-name py-2.5 text-left font-bold text-neutral-400 uppercase tracking-wider text-[11px]"><?php esc_html_e('Producto', 'alex-store'); ?></th>
+            <th class="product-total py-2.5 text-right font-bold text-neutral-400 uppercase tracking-wider text-[11px]"><?php esc_html_e('Subtotal', 'alex-store'); ?></th>
         </tr>
     </thead>
     <tbody class="divide-y divide-neutral-100">
@@ -24,7 +24,7 @@ defined('ABSPATH') || exit;
 
             if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
                 $raw_name     = $_product->get_name();
-                $product_name = function_exists('tech_store_capitalize_text') ? tech_store_capitalize_text($raw_name) : ucwords(strtolower($raw_name));
+                $product_name = function_exists('alex_store_capitalize_text') ? alex_store_capitalize_text($raw_name) : ucwords(strtolower($raw_name));
                 $thumbnail    = $_product->get_image('thumbnail', ['class' => 'w-12 h-12 object-contain rounded-xl bg-neutral-50 p-1 border border-neutral-200 flex-shrink-0']);
                 ?>
                 <tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
@@ -59,7 +59,7 @@ defined('ABSPATH') || exit;
 
         <!-- Subtotal -->
         <tr class="cart-subtotal border-t border-neutral-200">
-            <th class="py-3 text-left font-semibold text-neutral-600"><?php esc_html_e('Subtotal', 'tech-store'); ?></th>
+            <th class="py-3 text-left font-semibold text-neutral-600"><?php esc_html_e('Subtotal', 'alex-store'); ?></th>
             <td class="py-3 text-right font-bold text-neutral-900"><?php wc_cart_totals_subtotal_html(); ?></td>
         </tr>
 
@@ -75,8 +75,8 @@ defined('ABSPATH') || exit;
         <?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
             <?php do_action('woocommerce_review_order_before_shipping'); ?>
             <tr class="woocommerce-shipping-totals shipping border-t border-neutral-100">
-                <th class="py-3 text-left font-semibold text-neutral-600 align-top"><?php esc_html_e('Envío', 'tech-store'); ?></th>
-                <td class="py-3 text-right font-medium text-neutral-800" data-title="<?php esc_attr_e('Envío', 'tech-store'); ?>">
+                <th class="py-3 text-left font-semibold text-neutral-600 align-top"><?php esc_html_e('Envío', 'alex-store'); ?></th>
+                <td class="py-3 text-right font-medium text-neutral-800" data-title="<?php esc_attr_e('Envío', 'alex-store'); ?>">
                     <?php wc_cart_totals_shipping_html(); ?>
                 </td>
             </tr>
@@ -112,7 +112,7 @@ defined('ABSPATH') || exit;
 
         <!-- Total -->
         <tr class="order-total border-t-2 border-neutral-900 pt-3">
-            <th class="py-4 text-left font-black text-neutral-900 text-sm sm:text-base"><?php esc_html_e('Total a pagar', 'tech-store'); ?></th>
+            <th class="py-4 text-left font-black text-neutral-900 text-sm sm:text-base"><?php esc_html_e('Total a pagar', 'alex-store'); ?></th>
             <td class="py-4 text-right font-black text-neutral-900 text-lg sm:text-2xl"><?php wc_cart_totals_order_total_html(); ?></td>
         </tr>
 

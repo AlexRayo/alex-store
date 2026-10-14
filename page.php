@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * The template for displaying all pages
  *
@@ -17,7 +17,7 @@ if (class_exists('WooCommerce')) {
 }
 ?>
 
-<main id="primary" class="site-main <?php echo $is_wc_special_page ? 'py-4 sm:py-6' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'; ?>">
+<main id="primary" class="site-main <?php echo $is_wc_special_page ? 'py-4 sm:py-6' : 'site-container py-8'; ?>">
     <?php while (have_posts()) : the_post(); ?>
         <?php if ($is_wc_special_page) : ?>
             <!-- WooCommerce Full App Pages (Cart, Checkout, Account) without redundant containers -->
@@ -38,7 +38,7 @@ if (class_exists('WooCommerce')) {
                     the_content();
 
                     wp_link_pages([
-                        'before' => '<div class="page-links">' . esc_html__('Páginas:', 'tech-store'),
+                        'before' => '<div class="page-links">' . esc_html__('Páginas:', 'alex-store'),
                         'after'  => '</div>',
                     ]);
                     ?>

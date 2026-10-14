@@ -30,7 +30,7 @@ if (apply_filters('woocommerce_checkout_show_terms', true) && function_exists('w
                     <input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox w-4 h-4 mt-0.5 rounded text-primary focus:ring-primary border-neutral-300" name="terms" <?php checked(apply_filters('woocommerce_terms_is_checked_default', isset($_POST['terms'])), true); // WPCS: input var ok, csrf ok. ?> id="terms" />
                     <span class="woocommerce-terms-and-conditions-checkbox-text">
                         <?php wc_terms_and_conditions_checkbox_text(); ?>
-                    </span>&nbsp;<abbr class="required text-rose-500 font-bold" title="<?php esc_attr_e('obligatorio', 'tech-store'); ?>">*</abbr>
+                    </span>&nbsp;<abbr class="required text-rose-500 font-bold" title="<?php esc_attr_e('obligatorio', 'alex-store'); ?>">*</abbr>
                 </label>
                 <input type="hidden" name="terms-field" value="1" />
             </p>

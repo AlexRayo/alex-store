@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Category Navigation Bar Component (Neutral Monochrome Edition)
  *
@@ -22,7 +22,7 @@ if (class_exists('WooCommerce')) {
 ?>
 
 <div class="bg-white border-b border-neutral-200/60 py-2.5 shadow-subtle overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="site-container">
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
             
             <!-- All / Catalog Pill -->
@@ -30,8 +30,8 @@ if (class_exists('WooCommerce')) {
                 href="<?php echo function_exists('wc_get_page_permalink') ? esc_url(wc_get_page_permalink('shop')) : esc_url(home_url('/shop')); ?>" 
                 class="ubx-pill-tab flex items-center gap-1.5 font-semibold text-neutral-900 bg-neutral-100 hover:bg-neutral-900 hover:text-white"
             >
-                <span>⚡</span>
-                <span><?php esc_html_e('Todos los Productos', 'tech-store'); ?></span>
+                <?php echo alex_store_svg_icon('sparkles', 'w-3.5 h-3.5 text-amber-500'); ?>
+                <span><?php esc_html_e('Todos los Productos', 'alex-store'); ?></span>
             </a>
 
             <!-- Dynamic Category Pills from WooCommerce -->
@@ -51,17 +51,17 @@ if (class_exists('WooCommerce')) {
                 <!-- Categorías canónicas de MR Soluciones -->
                 <?php
                 $sample_cats = [
-                    __('Celulares', 'tech-store'),
-                    __('Computadoras', 'tech-store'),
-                    __('Audífonos', 'tech-store'),
-                    __('Audio y Video', 'tech-store'),
-                    __('Gaming', 'tech-store'),
-                    __('Monitores', 'tech-store'),
-                    __('Almacenamiento', 'tech-store'),
-                    __('Cámaras de Vigilancia', 'tech-store'),
-                    __('Relojes Inteligentes', 'tech-store'),
-                    __('Tablets', 'tech-store'),
-                    __('Accesorios', 'tech-store'),
+                    __('Celulares', 'alex-store'),
+                    __('Computadoras', 'alex-store'),
+                    __('Audífonos', 'alex-store'),
+                    __('Audio y Video', 'alex-store'),
+                    __('Gaming', 'alex-store'),
+                    __('Monitores', 'alex-store'),
+                    __('Almacenamiento', 'alex-store'),
+                    __('Cámaras de Vigilancia', 'alex-store'),
+                    __('Relojes Inteligentes', 'alex-store'),
+                    __('Tablets', 'alex-store'),
+                    __('Accesorios', 'alex-store'),
                 ];
                 foreach ($sample_cats as $sample) :
                 ?>
